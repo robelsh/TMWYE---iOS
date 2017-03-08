@@ -36,6 +36,20 @@ class Movie {
         self.id = id
     }
     
+    init(){
+        self.country = ""
+        self.year = ""
+        self.title = ""
+        self.poster = ""
+        self.rating = ""
+        self.plot = ""
+        self.runtime = ""
+        self.released = ""
+        self.genre = ""
+        self.imdbId = ""
+        self.id = ""
+    }
+    
 
     
 }

@@ -9,24 +9,33 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var titleTextLabel: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var runtime: UILabel!
+    @IBOutlet weak var country: UILabel!
+    @IBOutlet weak var released: UILabel!
+    @IBOutlet weak var plot: UITextView!
+    @IBOutlet weak var genre: UILabel!
 
-    @IBOutlet weak var label: UILabel!
-    var image:String = ""
+    var movie:Movie = Movie()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.text = image
-        // Do any additional setup after loading the view.
+        self.country.text = movie.country
+        self.genre.text = movie.genre
+        self.plot.text = movie.plot
+        self.rating.text = movie.rating
+        self.released.text = movie.released
+        self.year.text = movie.year
+        self.runtime.text = movie.runtime
+        self.titleTextLabel.text = movie.title
+        let url = URL(string: movie.poster)
+        self.image.image = UIImage(data: try! Data(contentsOf:  url!))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    
-
- 
-
 }

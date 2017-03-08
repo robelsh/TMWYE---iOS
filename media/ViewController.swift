@@ -96,7 +96,7 @@ class ViewController: UITableViewController {
         let cell = sender as? UITableViewCell
         let indexPath = tableView.indexPath(for: cell!)
         let svc = segue.destination as! DetailViewController;
-        svc.image = self.test[(indexPath?.row)!]
+        svc.movie = self.movies[(indexPath?.row)!]
     }
 }
 
