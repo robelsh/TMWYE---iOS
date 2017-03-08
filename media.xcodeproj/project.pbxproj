@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73067E761E70AD6400A15551 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73067E751E70AD6400A15551 /* Reachability.swift */; };
 		734056441E491BB1007A3070 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056431E491BB1007A3070 /* AppDelegate.swift */; };
 		734056461E491BB1007A3070 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056451E491BB1007A3070 /* ViewController.swift */; };
 		734056491E491BB1007A3070 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 734056471E491BB1007A3070 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		189D2175C278E1C4F4B8026E /* Pods-media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-media.release.xcconfig"; path = "Pods/Target Support Files/Pods-media/Pods-media.release.xcconfig"; sourceTree = "<group>"; };
 		3E7F53C5AD0A97B4F1290892 /* Pods_media.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_media.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73067E751E70AD6400A15551 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		734056401E491BB1007A3070 /* media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734056431E491BB1007A3070 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		734056451E491BB1007A3070 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				7340564F1E491BB1007A3070 /* Info.plist */,
 				73F5A59D1E70384E0066B42F /* Movie.swift */,
 				73A2FFEB1E706B08000F43C1 /* User.swift */,
+				73067E751E70AD6400A15551 /* Reachability.swift */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				737D5D401E701816009CC757 /* LoginViewController.swift in Sources */,
 				734056461E491BB1007A3070 /* ViewController.swift in Sources */,
 				734056441E491BB1007A3070 /* AppDelegate.swift in Sources */,
+				73067E761E70AD6400A15551 /* Reachability.swift in Sources */,
 				73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */,
 				73A2FFEC1E706B08000F43C1 /* User.swift in Sources */,
 				73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */,
