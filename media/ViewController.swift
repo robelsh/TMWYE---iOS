@@ -26,17 +26,21 @@ class ViewController: UITableViewController {
 
         ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: filmItem["poster"]!, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!)
+            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: filmItem["poster"]!, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
             self.movies.append(movie)
             self.tableView.reloadData()
         })
-        /*
+        
         ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            self.film.remove(at: self.film.index(of: filmItem["name"]!)!)
-            self.updateDatas()
+            
+            let index = self.movies.index(where: { (movie) -> Bool in
+                movie.imdbId == filmItem["imdbId"]!
+            })
+            self.movies.remove(at: index!)
+            self.tableView.reloadData()
         })
-    
+        /*
         ref.child("medias").observe(.childChanged, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
             let index = self.film.index(of: filmItem["name"]!)!
@@ -48,7 +52,6 @@ class ViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func getJSON(urlToRequest:String) -> Data {
@@ -75,6 +78,7 @@ class ViewController: UITableViewController {
     {
         if editingStyle == .delete
         {
+            ref.child("medias/" + movies[indexPath.row].id).removeValue()
             self.tableView.reloadData()
         }
     }
