@@ -94,9 +94,11 @@ class ViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as? UITableViewCell
-        let indexPath = tableView.indexPath(for: cell!)
-        let svc = segue.destination as! DetailViewController;
-        svc.movie = self.movies[(indexPath?.row)!]
+        if cell != nil {
+            let indexPath = tableView.indexPath(for: cell!)
+            let svc = segue.destination as! DetailViewController;
+            svc.movie = self.movies[(indexPath?.row)!]
+        }
     }
 }
 

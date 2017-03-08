@@ -68,7 +68,19 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Movie" id="kBq-If-qSj"/>
-                    <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU"/>
+                    <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU">
+                        <barButtonItem key="leftBarButtonItem" image="Plus_000000_25" style="plain" id="THF-aW-zEb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xYy-tU-bSn">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <segue destination="8hT-vD-J7k" kind="presentation" id="TeE-js-oZ7"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jm1-A0-CXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZU-54-UEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1116" y="631"/>
+            <point key="canvasLocation" x="-398" y="448"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="4je-qX-ts7">
@@ -186,7 +198,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8hT-vD-J7k" kind="relationship" relationship="viewControllers" id="aBZ-Bu-JyP"/>
                         <segue destination="qfY-OU-JjC" kind="relationship" relationship="viewControllers" id="gNf-DZ-bly"/>
                         <segue destination="jiZ-4R-cVD" kind="relationship" relationship="viewControllers" id="hzK-VE-piU"/>
                     </connections>
@@ -404,12 +415,12 @@
             </objects>
             <point key="canvasLocation" x="473" y="1331"/>
         </scene>
-        <!--Item-->
+        <!--List-->
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="SXb-YU-VW2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZwO-wS-6Qq">
+                    <tabBarItem key="tabBarItem" title="List" image="Bulleted List_000000_50" id="SXb-YU-VW2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -421,7 +432,7 @@
             </objects>
             <point key="canvasLocation" x="-1116" y="1331"/>
         </scene>
-        <!--Item-->
+        <!--Account-->
         <scene sceneID="lZQ-Dr-cz3">
             <objects>
                 <viewController id="jiZ-4R-cVD" customClass="AccountViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
@@ -444,13 +455,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="kw3-fD-wN8"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="Contacts_000000_50" id="kw3-fD-wN8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uu5-ds-okp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1116" y="2091"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Bulleted List_000000_50" width="50" height="50"/>
+        <image name="Contacts_000000_50" width="50" height="50"/>
+        <image name="Plus_000000_25" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a47-Xq-Q9S"/>
     </inferredMetricsTieBreakers>
