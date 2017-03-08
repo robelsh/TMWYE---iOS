@@ -15,10 +15,8 @@ class ViewController: UITableViewController {
     let DATAS_USER_DEFAULT_KEY:String = "DATA"
     let IMG_USER_DEFAULT_KEY:String = "IMAGE"
     let baseURL = "https://www.omdbapi.com"
-    var film:[String] = []
-    var datas:[Dictionary<String,String>] = [[:]]
-    var images:[Data] = []
     var ref: FIRDatabaseReference!
+    var movies:[Movie] = []
     
     var tableViewControler = UITableViewController(style: .plain)
     
@@ -28,10 +26,11 @@ class ViewController: UITableViewController {
 
         ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            self.film.append(filmItem["name"]!)
-            self.updateDatas()
+            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: filmItem["poster"]!, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!)
+            self.movies.append(movie)
+            self.tableView.reloadData()
         })
-        
+        /*
         ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
             self.film.remove(at: self.film.index(of: filmItem["name"]!)!)
@@ -43,29 +42,10 @@ class ViewController: UITableViewController {
             let index = self.film.index(of: filmItem["name"]!)!
             self.film[index] = filmItem["name"]!
             self.updateDatas()
-        })
+        })*/
     
     }
-    
-    func updateDatas(){
-        self.getDatas()
-        self.tableView.reloadData()
-    }
-    
-    func getDatas(){
-        var imagesItems:[Data] = []
-        var datasItems:[Dictionary<String,String>] = [[:]]
-        
-        for movie in film {
-            let data = parseJSON(inputData: getJSON(urlToRequest: baseURL + "/?t="+movie+"&y=&plot=short&r=json"))
-            let url = URL(string: data["Poster"]!)
-            imagesItems.append(try! Data(contentsOf:  url!))
-            datasItems.append(data)
-        }
-        self.datas = datasItems
-        self.images = imagesItems
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,7 +67,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return movies.count
         
     }
     
@@ -95,16 +75,14 @@ class ViewController: UITableViewController {
     {
         if editingStyle == .delete
         {
-            ref.child("medias/name/\(indexPath.row)").removeValue()
-            self.test.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:TableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
-        if !self.datas.isEmpty {
-            cell.display(poster: images[indexPath.row],data:self.datas[indexPath.row+1])
+        if !self.movies.isEmpty {
+            cell.display(data:movies[indexPath.row])
         }
         return cell
     }

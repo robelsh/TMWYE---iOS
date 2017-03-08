@@ -24,9 +24,10 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func display(poster: Data, data:Dictionary<String,String>){
-        self.label.text = data["Title"]
-        self.img.image = UIImage(data: poster)
+    func display(data:Movie){
+        self.label.text = data.title
+        let url = URL(string: data.poster)
+        self.img.image = UIImage(data: try! Data(contentsOf:  url!))
     }
 
 }

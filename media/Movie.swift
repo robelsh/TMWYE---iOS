@@ -18,8 +18,9 @@ class Movie {
     var released:String
     var genre:String
     var country:String
+    var imdbId:String
     
-    init(title:String, year:String, poster:String, rating:String, plot:String, runtime:String, released:String, genre:String, country:String) {
+    init(title:String, year:String, poster:String, rating:String, plot:String, runtime:String, released:String, genre:String, country:String, imdbId:String) {
         self.country = country
         self.year = year
         self.title = title
@@ -29,6 +30,7 @@ class Movie {
         self.runtime = runtime
         self.released = released
         self.genre = genre
+        self.imdbId = imdbId
     }
     
 

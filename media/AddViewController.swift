@@ -42,7 +42,7 @@ class AddViewController: UIViewController {
             let data = parseJSON(inputData: getJSON(urlToRequest: baseURL + "/?t="+film+"&y=&plot=short&r=json"))
 
             let key = ref.child("medias").childByAutoId().key
-            let childUpdates = ["medias/\(key)/": ["title":data["Title"],"id":key, "runtime":data["Runtime"], "genre":data["Genre"],"country":data["Country"],"released":data["Released"],"plot":data["Plot"],"poster":data["Poster"],"rating":data["imdbRating"],"year":data["Year"]]]
+            let childUpdates = ["medias/\(key)/": ["title":data["Title"],"id":key, "runtime":data["Runtime"], "genre":data["Genre"],"country":data["Country"],"released":data["Released"],"plot":data["Plot"],"poster":data["Poster"],"rating":data["imdbRating"],"year":data["Year"],"imdbId":data["imdbID"]]]
             ref.updateChildValues(childUpdates)
             self.input.text=""
         }
