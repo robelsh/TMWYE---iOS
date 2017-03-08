@@ -67,7 +67,7 @@
                             <outlet property="delegate" destination="k5M-1i-Mi6" id="3Aw-Lq-cxS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="Movie_000000_25" id="kBq-If-qSj"/>
+                    <tabBarItem key="tabBarItem" title="List" image="movie" id="kBq-If-qSj"/>
                     <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU">
                         <barButtonItem key="leftBarButtonItem" image="Plus_000000_25" style="plain" id="THF-aW-zEb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xYy-tU-bSn">
@@ -414,7 +414,7 @@
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="Movie_000000_25" id="SXb-YU-VW2"/>
+                    <tabBarItem key="tabBarItem" title="List" image="movie" id="SXb-YU-VW2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -450,7 +450,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" image="Circled User Male_000000_25" id="kw3-fD-wN8"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="account" id="kw3-fD-wN8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uu5-ds-okp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -458,9 +458,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Circled User Male_000000_25" width="25" height="25"/>
-        <image name="Movie_000000_25" width="25" height="25"/>
         <image name="Plus_000000_25" width="25" height="25"/>
+        <image name="account" width="25" height="25"/>
+        <image name="movie" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a47-Xq-Q9S"/>
