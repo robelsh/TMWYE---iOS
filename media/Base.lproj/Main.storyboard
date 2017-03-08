@@ -24,11 +24,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bga-nV-Tmj" id="jbp-NZ-3KT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-fs-MLn">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="114.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="115"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="gAa-Uj-pcF"/>
                                             </constraints>
@@ -244,18 +244,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F58-Rf-YT7">
+                                <rect key="frame" x="134" y="345" width="130" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign in with google"/>
+                                <connections>
+                                    <action selector="logInGoogle:" destination="AWG-hF-gaA" eventType="touchUpInside" id="gQh-YJ-oLx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="qmh-71-4hj"/>
                     <connections>
+                        <outlet property="logInGoogle" destination="F58-Rf-YT7" id="nIA-yU-FYJ"/>
                         <outlet property="loginTextField" destination="JtK-EX-jSk" id="rNg-3N-EuK"/>
                         <outlet property="passwordTextField" destination="SOb-qP-r2k" id="he2-YY-gCa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IyQ-g4-suk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4266" y="347"/>
+            <point key="canvasLocation" x="-4359" y="347"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="LDd-nY-ofA">

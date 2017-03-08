@@ -10,11 +10,12 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
-    
+    @IBOutlet weak var logInGoogle: GIDSignInButton!
+
     @IBAction func logIn(_ sender: Any) {
         if self.loginTextField.text == "" || self.passwordTextField.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
@@ -41,12 +42,18 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
         FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if (user != nil) {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                 self.present(vc!, animated: true, completion: nil)
             }
         }
+    }
+    
+    @IBAction func logInGoogle(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
     }
 
     override func didReceiveMemoryWarning() {
