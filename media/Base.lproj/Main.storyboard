@@ -67,7 +67,7 @@
                             <outlet property="delegate" destination="k5M-1i-Mi6" id="3Aw-Lq-cxS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Movie" id="kBq-If-qSj"/>
+                    <tabBarItem key="tabBarItem" title="List" image="Movie_000000_25" id="kBq-If-qSj"/>
                     <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU">
                         <barButtonItem key="leftBarButtonItem" image="Plus_000000_25" style="plain" id="THF-aW-zEb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xYy-tU-bSn">
@@ -383,11 +383,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sJU-5h-ryN">
-                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -419,7 +414,7 @@
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="Bulleted List_000000_50" id="SXb-YU-VW2"/>
+                    <tabBarItem key="tabBarItem" title="List" image="Movie_000000_25" id="SXb-YU-VW2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -455,7 +450,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" image="Contacts_000000_50" id="kw3-fD-wN8"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="Circled User Male_000000_25" id="kw3-fD-wN8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uu5-ds-okp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -463,8 +458,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bulleted List_000000_50" width="50" height="50"/>
-        <image name="Contacts_000000_50" width="50" height="50"/>
+        <image name="Circled User Male_000000_25" width="25" height="25"/>
+        <image name="Movie_000000_25" width="25" height="25"/>
         <image name="Plus_000000_25" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
