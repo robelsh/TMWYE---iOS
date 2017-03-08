@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:media/AccountViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:media.xcodeproj">
    </FileRef>
    <FileRef

@@ -14,7 +14,7 @@
         <!--Liste-->
         <scene sceneID="aNS-RE-gKZ">
             <objects>
-                <tableViewController title="Liste" id="k5M-1i-Mi6" customClass="ViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="k5M-1i-Mi6" customClass="ViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" id="h91-ea-No8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bga-nV-Tmj" id="jbp-NZ-3KT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-fs-MLn">
@@ -67,29 +67,14 @@
                             <outlet property="delegate" destination="k5M-1i-Mi6" id="3Aw-Lq-cxS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="kBq-If-qSj"/>
-                    <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="vhK-tI-EhL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FeT-nm-wrL">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="☕️"/>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="3Ut-nH-QCx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xZT-ab-eG9">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="🔍"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Movie" id="kBq-If-qSj"/>
+                    <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jm1-A0-CXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-457" y="1245"/>
+            <point key="canvasLocation" x="-330" y="1256"/>
         </scene>
-        <!--Item-->
+        <!--Add-->
         <scene sceneID="nqv-jE-3fk">
             <objects>
                 <viewController id="8hT-vD-J7k" customClass="AddViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,7 +109,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="5nk-2Z-bTf"/>
+                    <tabBarItem key="tabBarItem" title="Add" id="5nk-2Z-bTf"/>
                     <navigationItem key="navigationItem" id="v63-cL-H23"/>
                     <connections>
                         <outlet property="input" destination="dvQ-tG-Ghe" id="s5M-9X-1yr"/>
@@ -132,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZU-54-UEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-457" y="522"/>
+            <point key="canvasLocation" x="-1116" y="631"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="4je-qX-ts7">
@@ -199,8 +184,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="SSO-he-5yB">
             <objects>
-                <tabBarController id="0dv-a2-QmY" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="l7w-p9-Da4"/>
+                <tabBarController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0dv-a2-QmY" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="P7O-GX-Dzg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -208,17 +192,18 @@
                     </tabBar>
                     <connections>
                         <segue destination="8hT-vD-J7k" kind="relationship" relationship="viewControllers" id="aBZ-Bu-JyP"/>
-                        <segue destination="k5M-1i-Mi6" kind="relationship" relationship="viewControllers" id="vdR-kG-PH4"/>
+                        <segue destination="qfY-OU-JjC" kind="relationship" relationship="viewControllers" id="gNf-DZ-bly"/>
+                        <segue destination="jiZ-4R-cVD" kind="relationship" relationship="viewControllers" id="hzK-VE-piU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlj-TF-ab4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1849" y="1245"/>
+            <point key="canvasLocation" x="-2170" y="1331"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="o89-SH-fsa">
             <objects>
-                <viewController id="AWG-hF-gaA" customClass="LoginViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AWG-hF-gaA" customClass="LoginViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v2p-jD-obQ"/>
                         <viewControllerLayoutGuide type="bottom" id="los-aL-Ksm"/>
@@ -415,21 +400,51 @@
             </objects>
             <point key="canvasLocation" x="354" y="1245"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Item-->
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
-                <navigationController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" customClass="MainViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="SXb-YU-VW2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="0dv-a2-QmY" kind="relationship" relationship="rootViewController" id="yxX-BM-yTm"/>
+                        <segue destination="k5M-1i-Mi6" kind="relationship" relationship="rootViewController" id="qfu-Sb-EVe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wyx-IM-Zk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2591" y="1245"/>
+            <point key="canvasLocation" x="-1116" y="1331"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="lZQ-Dr-cz3">
+            <objects>
+                <viewController id="jiZ-4R-cVD" customClass="AccountViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a7R-g7-Inc"/>
+                        <viewControllerLayoutGuide type="bottom" id="JUu-Yp-CxY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VlN-AL-dqV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGl-JJ-jJ8">
+                                <rect key="frame" x="164" y="299" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="logOutAction:" destination="jiZ-4R-cVD" eventType="touchUpInside" id="D62-r2-AFy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="kw3-fD-wN8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uu5-ds-okp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1116" y="2091"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
