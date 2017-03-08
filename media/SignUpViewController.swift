@@ -15,6 +15,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var ref: FIRDatabaseReference!
+
     @IBAction func hideSignUp(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -32,6 +34,9 @@ class SignUpViewController: UIViewController {
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 
                 if error == nil {
+                    self.ref = FIRDatabase.database().reference()
+                    /*let user:User = User(uid: (FIRAuth.auth()?.currentUser?.uid)!, displayname: (FIRAuth.auth()?.currentUser?.displayName)!, email: (FIRAuth.auth()?.currentUser?.email)!, photoUrl: (FIRAuth.auth()?.currentUser?.photoURL?.absoluteString)!, providerID: (FIRAuth.auth()?.currentUser?.providerID)!)
+                    self.ref.child("users").child(user.uid).setValue(["displayName": user.displayName, "uid": user.uid, "email":user.email, "providerId":user.providerID, "photoURL": user.photoUrl])*/
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                     self.present(vc!, animated: true, completion: nil)
                     

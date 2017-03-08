@@ -20,6 +20,9 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ref = FIRDatabase.database().reference()
+        let user:User = User(uid: (FIRAuth.auth()?.currentUser?.uid)!, displayname: (FIRAuth.auth()?.currentUser?.displayName)!, email: (FIRAuth.auth()?.currentUser?.email)!, photoUrl: (FIRAuth.auth()?.currentUser?.photoURL?.absoluteString)!, providerID: (FIRAuth.auth()?.currentUser?.providerID)!)
+        self.ref.child("users").child(user.uid).setValue(["displayName": user.displayName, "uid": user.uid, "email":user.email, "providerId":user.providerID, "photoURL": user.photoUrl])
+
     }
 
     override func didReceiveMemoryWarning() {

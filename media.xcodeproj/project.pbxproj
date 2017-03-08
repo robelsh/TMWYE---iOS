@@ -18,6 +18,7 @@
 		73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73730E141E6E06AE00218B21 /* DetailViewController.swift */; };
 		737D5D3E1E70180C009CC757 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3D1E70180C009CC757 /* SignUpViewController.swift */; };
 		737D5D401E701816009CC757 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3F1E701816009CC757 /* LoginViewController.swift */; };
+		73A2FFEC1E706B08000F43C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2FFEB1E706B08000F43C1 /* User.swift */; };
 		73F5A59E1E70384E0066B42F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5A59D1E70384E0066B42F /* Movie.swift */; };
 		73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5A5A11E705B150066B42F /* AccountViewController.swift */; };
 		8DC7DB76B9008034814EE58C /* Pods_media.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7F53C5AD0A97B4F1290892 /* Pods_media.framework */; };
@@ -39,6 +40,7 @@
 		73730E141E6E06AE00218B21 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		737D5D3D1E70180C009CC757 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		737D5D3F1E701816009CC757 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		73A2FFEB1E706B08000F43C1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		73F5A59D1E70384E0066B42F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		73F5A5A11E705B150066B42F /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CFC57D4380395D5E727A6D63 /* Pods-media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-media.debug.xcconfig"; path = "Pods/Target Support Files/Pods-media/Pods-media.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
 				7340564F1E491BB1007A3070 /* Info.plist */,
 				73F5A59D1E70384E0066B42F /* Movie.swift */,
+				73A2FFEB1E706B08000F43C1 /* User.swift */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				734056461E491BB1007A3070 /* ViewController.swift in Sources */,
 				734056441E491BB1007A3070 /* AppDelegate.swift in Sources */,
 				73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */,
+				73A2FFEC1E706B08000F43C1 /* User.swift in Sources */,
 				73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

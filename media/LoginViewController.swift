@@ -15,6 +15,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var logInGoogle: GIDSignInButton!
+    
+    var ref: FIRDatabaseReference!
 
     @IBAction func logIn(_ sender: Any) {
         if self.loginTextField.text == "" || self.passwordTextField.text == "" {
