@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if (user != nil) {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                self.present(vc!, animated: true, completion: nil)
+                self.present(vc!, animated: false, completion: nil)
             }
         }
     }
