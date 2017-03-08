@@ -204,7 +204,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="sign in"/>
                                 <connections>
-                                    <segue destination="qfY-OU-JjC" kind="show" id="NB0-dZ-iPr"/>
+                                    <action selector="logIn:" destination="AWG-hF-gaA" eventType="touchUpInside" id="ggn-Tf-N13"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SOb-qP-r2k">
@@ -282,7 +282,7 @@
         <!--Main View Controller-->
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
-                <navigationController id="qfY-OU-JjC" customClass="MainViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" customClass="MainViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
