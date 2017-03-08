@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = movie.title
         self.country.text = movie.country
         self.genre.text = movie.genre
         self.plot.text = movie.plot

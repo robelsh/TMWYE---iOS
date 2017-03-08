@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Liste-->
+        <!--Movies-->
         <scene sceneID="aNS-RE-gKZ">
             <objects>
                 <tableViewController id="k5M-1i-Mi6" customClass="ViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,8 +67,8 @@
                             <outlet property="delegate" destination="k5M-1i-Mi6" id="3Aw-Lq-cxS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="movie" id="kBq-If-qSj"/>
-                    <navigationItem key="navigationItem" title="Liste" id="CeP-tS-hrU">
+                    <tabBarItem key="tabBarItem" title="Movies" image="movie" id="kBq-If-qSj"/>
+                    <navigationItem key="navigationItem" id="CeP-tS-hrU">
                         <barButtonItem key="leftBarButtonItem" image="Plus_000000_25" style="plain" id="THF-aW-zEb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xYy-tU-bSn">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
@@ -415,7 +415,7 @@
                                     <constraint firstItem="9jz-th-fIW" firstAttribute="leading" secondItem="Cgv-Xo-o5e" secondAttribute="leading" id="xGM-7P-Bkz"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Blu-Z8-b1E">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Blu-Z8-b1E">
                                 <rect key="frame" x="0.0" y="272" width="375" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -452,11 +452,11 @@
             </objects>
             <point key="canvasLocation" x="472.80000000000001" y="1330.8845577211396"/>
         </scene>
-        <!--List-->
+        <!--Movies-->
         <scene sceneID="Cr1-Wd-zqz">
             <objects>
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="movie" id="SXb-YU-VW2"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="movie" id="SXb-YU-VW2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
