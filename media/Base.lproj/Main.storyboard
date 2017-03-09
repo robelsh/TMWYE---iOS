@@ -254,10 +254,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F58-Rf-YT7">
-                                <rect key="frame" x="16" y="229" width="343" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F58-Rf-YT7">
+                                <rect key="frame" x="16" y="229" width="343" height="24"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.081618617957746484" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Sign in with google">
+                                <state key="normal" title="Sign in with google" image="google">
                                     <color key="titleColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -290,6 +290,16 @@
                                     <segue destination="aZj-ce-Cjw" kind="presentation" id="q7e-8K-GCi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nP-gg-SE5">
+                                <rect key="frame" x="16" y="268" width="343" height="32"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.081618617960000001" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sign in with Facebook" image="facebook">
+                                    <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -297,11 +307,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7Xq-RV-f8B" secondAttribute="trailing" id="BPZ-7s-Lne"/>
                             <constraint firstItem="SOb-qP-r2k" firstAttribute="top" secondItem="JtK-EX-jSk" secondAttribute="bottom" constant="25" id="F5s-Z4-3ll"/>
                             <constraint firstItem="7Xq-RV-f8B" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="Gst-ux-mtS"/>
+                            <constraint firstItem="5nP-gg-SE5" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="Oxx-Vl-QK1"/>
                             <constraint firstItem="los-aL-Ksm" firstAttribute="top" secondItem="7Xq-RV-f8B" secondAttribute="bottom" constant="50" id="Qud-Bk-Udc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IhA-iF-SXw" secondAttribute="trailing" id="S3n-n1-dHc"/>
                             <constraint firstItem="IhA-iF-SXw" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="Uud-WA-paB"/>
                             <constraint firstItem="F58-Rf-YT7" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="Zd7-Wx-bNL"/>
+                            <constraint firstItem="5nP-gg-SE5" firstAttribute="top" secondItem="F58-Rf-YT7" secondAttribute="bottom" constant="15" id="ZrM-8U-I24"/>
                             <constraint firstItem="JtK-EX-jSk" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="a7w-74-Oiy"/>
+                            <constraint firstItem="5nP-gg-SE5" firstAttribute="trailing" secondItem="tCV-ZH-Qp0" secondAttribute="trailingMargin" id="ap7-gI-TbA"/>
                             <constraint firstItem="F58-Rf-YT7" firstAttribute="top" secondItem="IhA-iF-SXw" secondAttribute="bottom" constant="25" id="bAd-qr-ick"/>
                             <constraint firstItem="SOb-qP-r2k" firstAttribute="leading" secondItem="tCV-ZH-Qp0" secondAttribute="leadingMargin" id="dch-49-yNt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SOb-qP-r2k" secondAttribute="trailing" id="gSG-4p-v1m"/>
@@ -581,6 +594,8 @@
     <resources>
         <image name="Plus_000000_25" width="25" height="25"/>
         <image name="account" width="25" height="25"/>
+        <image name="facebook" width="32" height="32"/>
+        <image name="google" width="24" height="24"/>
         <image name="movie" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
