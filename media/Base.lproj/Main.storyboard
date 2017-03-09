@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -289,12 +290,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hamburger" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-A6-Ung">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hamburger" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-A6-Ung">
+                                <rect key="frame" x="127" y="273" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HdB-A6-Ung" secondAttribute="height" multiplier="1:1" id="PtS-v3-6LC"/>
+                                    <constraint firstAttribute="width" constant="120" id="yF4-qa-AKH"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HdB-A6-Ung" firstAttribute="centerX" secondItem="Qol-O5-gx3" secondAttribute="centerX" id="HMR-lP-MDX"/>
+                            <constraint firstItem="HdB-A6-Ung" firstAttribute="centerY" secondItem="Qol-O5-gx3" secondAttribute="centerY" id="HrP-NX-9pX"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lA5-Pf-MrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,7 +556,7 @@
                     <tabBarItem key="tabBarItem" title="Movies" image="movie" id="SXb-YU-VW2"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ZwO-wS-6Qq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

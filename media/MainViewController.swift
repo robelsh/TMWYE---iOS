@@ -13,7 +13,9 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if Reachability.isConnectedToNetwork() != true {
+            self.displayAlertNetwork()
+        } else {
         FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if (user != nil) {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
@@ -23,22 +25,17 @@ class MainViewController: UIViewController {
                 self.present(vc!, animated: false, completion: nil)
             }
         }
+        }
+    }
+    
+    func displayAlertNetwork(){
+        let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
