@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class AccountViewController: UIViewController {
 
+    @IBOutlet weak var uidTextField: UILabel!
+    @IBOutlet weak var emailTextField: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
@@ -19,6 +21,9 @@ class AccountViewController: UIViewController {
         profilePic.backgroundColor = UIColor.black
         profilePic.layer.cornerRadius = 45
         profilePic.clipsToBounds = true
+        self.emailTextField.text = FIRAuth.auth()?.currentUser?.email
+        self.uidTextField.text = FIRAuth.auth()?.currentUser?.uid
+
         if FIRAuth.auth()?.currentUser?.photoURL != nil {
             self.nameLabel.text = FIRAuth.auth()?.currentUser?.displayName
             self.profilePic.image = UIImage(data: try! Data(contentsOf:  (FIRAuth.auth()?.currentUser?.photoURL)!))

@@ -11,7 +11,7 @@ import Foundation
 class Movie {
     var title:String
     var year:String
-    var poster:String
+    var poster:Data
     var rating:String
     var plot:String
     var runtime:String
@@ -22,7 +22,7 @@ class Movie {
     var id:String
 
     
-    init(title:String, year:String, poster:String, rating:String, plot:String, runtime:String, released:String, genre:String, country:String, imdbId:String, id:String) {
+    init(title:String, year:String, poster:Data, rating:String, plot:String, runtime:String, released:String, genre:String, country:String, imdbId:String, id:String) {
         self.country = country
         self.year = year
         self.title = title
@@ -40,7 +40,7 @@ class Movie {
         self.country = ""
         self.year = ""
         self.title = ""
-        self.poster = ""
+        self.poster = Data()
         self.rating = ""
         self.plot = ""
         self.runtime = ""

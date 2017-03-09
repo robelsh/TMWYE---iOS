@@ -25,7 +25,9 @@ class ViewController: UITableViewController {
         self.ref = FIRDatabase.database().reference()
         ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: filmItem["poster"]!, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
+            let url = URL(string: filmItem["poster"]!)
+            let image = try! Data(contentsOf:  url!)
+            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: image, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
             self.movies.append(movie)
             self.tableView.reloadData()
         })

@@ -32,8 +32,7 @@ class DetailViewController: UIViewController {
         self.year.text = movie.year
         self.runtime.text = movie.runtime
         self.titleTextLabel.text = movie.title
-        let url = URL(string: movie.poster)
-        self.image.image = UIImage(data: try! Data(contentsOf:  url!))
+        self.image.image = UIImage(data: movie.poster)
     }
 
     override func didReceiveMemoryWarning() {
