@@ -1,5 +1,5 @@
 //
-//  AccountSettingsViewController.swift
+//  MainViewController.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 09/03/2017.
@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
-class AccountSettingsViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+            if (user != nil) {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                self.present(vc!, animated: false, completion: nil)
+            } else {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+                self.present(vc!, animated: false, completion: nil)
+            }
+        }
     }
 
-    @IBAction func cancelSettings(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 

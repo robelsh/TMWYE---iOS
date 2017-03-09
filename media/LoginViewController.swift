@@ -61,7 +61,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        
         FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if (user != nil) {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")

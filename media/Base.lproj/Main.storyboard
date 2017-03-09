@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AWG-hF-gaA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3tB-NI-cRF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -276,6 +276,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlj-TF-ab4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2170" y="1331"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="Qkc-e9-Nj4">
+            <objects>
+                <viewController id="3tB-NI-cRF" customClass="MainViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QpP-lw-ebq"/>
+                        <viewControllerLayoutGuide type="bottom" id="V2k-Sg-efV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qol-O5-gx3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hamburger" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-A6-Ung">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lA5-Pf-MrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5268" y="347"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="o89-SH-fsa">
@@ -755,7 +779,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="validSettings:" destination="ymw-iM-AnZ" eventType="touchUpInside" id="v0Q-T0-Pl5"/>
+                                    <action selector="cancelSettings:" destination="ymw-iM-AnZ" eventType="touchUpInside" id="hKY-6a-tf9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -773,6 +797,7 @@
         <image name="facebook" width="32" height="32"/>
         <image name="food" width="25" height="25"/>
         <image name="google" width="24" height="24"/>
+        <image name="hamburger" width="25" height="25"/>
         <image name="movie" width="25" height="25"/>
         <image name="top" width="25" height="25"/>
         <image name="user settings" width="25" height="25"/>
