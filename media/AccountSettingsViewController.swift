@@ -10,8 +10,17 @@ import UIKit
 
 class AccountSettingsViewController: UIViewController {
 
+    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nickNameTextField: UITextField!
+    @IBOutlet weak var birthDatePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        surnameTextField.placeholder = "Surname"
+        phoneTextField.placeholder = "067879093"
+        nameTextField.placeholder = "Name"
     }
 
     @IBAction func cancelSettings(_ sender: Any) {
@@ -21,16 +30,4 @@ class AccountSettingsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
