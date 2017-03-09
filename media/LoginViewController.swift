@@ -70,6 +70,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    @IBAction func logInFacebook(_ sender: Any) {
+        if Reachability.isConnectedToNetwork() != true {
+            self.displayAlertNetwork()
+            
+        }else {
+        }
+    }
+    
     @IBAction func logInGoogle(_ sender: Any) {
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
