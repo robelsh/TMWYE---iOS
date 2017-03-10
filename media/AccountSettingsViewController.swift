@@ -16,11 +16,14 @@ class AccountSettingsViewController: UIViewController {
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     
+    var user:User = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        surnameTextField.placeholder = "Surname"
-        phoneTextField.placeholder = "067879093"
-        nameTextField.placeholder = "Name"
+        surnameTextField.text = user.surname
+        phoneTextField.text = user.phone
+        nameTextField.text = user.name
+        nickNameTextField.text = user.displayName
     }
 
     @IBAction func cancelSettings(_ sender: Any) {
