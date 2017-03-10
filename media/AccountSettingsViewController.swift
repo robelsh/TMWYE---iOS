@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountSettingsViewController: UIViewController {
 
@@ -15,7 +16,8 @@ class AccountSettingsViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
-    
+    var ref: FIRDatabaseReference!
+
     var user:User = User()
     
     override func viewDidLoad() {
@@ -30,6 +32,21 @@ class AccountSettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func submitSettings(_ sender: Any) {
+        self.ref = FIRDatabase.database().reference()
+        let key = self.user.uid
+        let update = ["users/\(key)":
+            ["surname":self.surnameTextField.text!,
+            "name":self.nameTextField.text!,
+            "displayName":self.nickNameTextField.text!,
+            "phone":self.phoneTextField.text!,
+            "email":self.user.email,
+            "uid":self.user.uid
+            ]
+        ]
+        ref.updateChildValues(update)
+        dismiss(animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

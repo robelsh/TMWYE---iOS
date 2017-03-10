@@ -39,9 +39,33 @@ class AccountViewController: UIViewController {
     }
 
     func loadUser(snapshot:Dictionary<String,String>,uid:String){
-        let photoURL = URL(string: (snapshot["photoURL"]!))!
-        let photo:Data = try! Data(contentsOf: photoURL)
-        self.user = User(uid: uid, displayname: (snapshot["displayName"]!), email: (snapshot["email"]!), photo: photo, providerID: (snapshot["providerId"]!), name: (snapshot["name"]!), surname: (snapshot["surname"]!), phone:(snapshot["phone"]!))
+        if let photo = snapshot["photoURL"] {
+            if photo != ""{
+                let photoURL = URL(string: photo)!
+                user.photo = try! Data(contentsOf: photoURL)
+            }
+        }
+        if let displayName = snapshot["displayName"] {
+            user.displayName = displayName
+        }
+        if let name = snapshot["name"] {
+            user.name = name
+        }
+        if let surname = snapshot["surname"] {
+            user.surname = surname
+        }
+        if let phone = snapshot["phone"] {
+            user.phone = phone
+        }
+        if let providerId = snapshot["providerId"] {
+            user.providerID = providerId
+        }
+        if let email = snapshot["email"] {
+            user.email = email
+        }
+        if let uid = snapshot["uid"] {
+            user.uid = uid
+        }
         self.updateUserView()
     }
     
