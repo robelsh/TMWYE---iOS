@@ -10,6 +10,8 @@
 		73067E761E70AD6400A15551 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73067E751E70AD6400A15551 /* Reachability.swift */; };
 		733133A11E7213DE00E18F0B /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */; };
 		733133A31E72156700E18F0B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A21E72156700E18F0B /* MainViewController.swift */; };
+		733133A51E72B55D00E18F0B /* FoodCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */; };
+		733133A71E72B5C100E18F0B /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */; };
 		734056441E491BB1007A3070 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056431E491BB1007A3070 /* AppDelegate.swift */; };
 		734056461E491BB1007A3070 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056451E491BB1007A3070 /* ViewController.swift */; };
 		734056491E491BB1007A3070 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 734056471E491BB1007A3070 /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 		73067E751E70AD6400A15551 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		733133A21E72156700E18F0B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewController.swift; sourceTree = "<group>"; };
+		733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		734056401E491BB1007A3070 /* media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734056431E491BB1007A3070 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		734056451E491BB1007A3070 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				734056571E491C66007A3070 /* TableViewCell.swift */,
 				734056451E491BB1007A3070 /* ViewController.swift */,
 				734056471E491BB1007A3070 /* Main.storyboard */,
+				733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */,
+				733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */,
 				733133A21E72156700E18F0B /* MainViewController.swift */,
 				73730E121E6DFB7200218B21 /* AddViewController.swift */,
 				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
@@ -255,9 +261,11 @@
 				734056581E491C66007A3070 /* TableViewCell.swift in Sources */,
 				73730E131E6DFB7200218B21 /* AddViewController.swift in Sources */,
 				737D5D401E701816009CC757 /* LoginViewController.swift in Sources */,
+				733133A51E72B55D00E18F0B /* FoodCollectionViewController.swift in Sources */,
 				734056461E491BB1007A3070 /* ViewController.swift in Sources */,
 				734056441E491BB1007A3070 /* AppDelegate.swift in Sources */,
 				73067E761E70AD6400A15551 /* Reachability.swift in Sources */,
+				733133A71E72B5C100E18F0B /* FoodCollectionViewCell.swift in Sources */,
 				73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */,
 				73A2FFEC1E706B08000F43C1 /* User.swift in Sources */,
 				73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */,
