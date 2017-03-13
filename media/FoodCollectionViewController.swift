@@ -19,7 +19,6 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
     let testC = [UIColor.black,UIColor.blue,UIColor.green,UIColor.red,UIColor.yellow,UIColor.cyan,UIColor.magenta,UIColor.orange,UIColor.purple,UIColor.brown,UIColor.darkGray,UIColor.blue]
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
