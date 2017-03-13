@@ -1,5 +1,5 @@
 //
-//  FoodCollectionViewController.swift
+//  MoviesCollectionViewController.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 10/03/2017.
@@ -11,14 +11,27 @@ import UIKit
 private let reuseIdentifier = "Cell"
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
-class FoodCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MoviesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     fileprivate let itemsPerRow: CGFloat = 3
-
-    let test = ["1","2","3","4","12","24","31","46","14","22","30","49"]
-    let testC = [UIColor.black,UIColor.blue,UIColor.green,UIColor.red,UIColor.yellow,UIColor.cyan,UIColor.magenta,UIColor.orange,UIColor.purple,UIColor.brown,UIColor.darkGray,UIColor.blue]
+    
+    var testImg:[UIImage] = []
+    let test = ["Drama","Horror","thriller", "romance","aventure","Comedy", "fantasy","Sci-fi","Family","Animation"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        testImg.append(UIImage(named: "comedy")!)
+        testImg.append(UIImage(named: "horror")!)
+        testImg.append(UIImage(named: "thriller")!)
+        testImg.append(UIImage(named: "romance")!)
+        testImg.append(UIImage(named: "aventure")!)
+        testImg.append(UIImage(named: "drama")!)
+        testImg.append(UIImage(named: "fantasy")!)
+        testImg.append(UIImage(named: "scifi")!)
+        testImg.append(UIImage(named: "family")!)
+        testImg.append(UIImage(named: "animation")!)
+
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -57,9 +70,9 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         return self.test.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FoodCollectionViewCell {
-        let cell:FoodCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodcell", for: indexPath) as! FoodCollectionViewCell
-        cell.display(title: self.test[indexPath.row], color: self.testC[indexPath.row])
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MoviesCollectionViewCell {
+        let cell:MoviesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviecell", for: indexPath) as! MoviesCollectionViewCell
+        cell.display(title: self.test[indexPath.row], img: self.testImg[indexPath.row])
         return cell
     }
     
