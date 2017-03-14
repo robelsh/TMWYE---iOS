@@ -16,7 +16,7 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     fileprivate let itemsPerRow: CGFloat = 3
     
     var testImg:[UIImage] = []
-    let test = ["Drama","Horror","thriller", "romance","aventure","Comedy", "fantasy","Sci-fi","Family","Animation"]
+    let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

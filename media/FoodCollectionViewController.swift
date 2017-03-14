@@ -15,14 +15,17 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
 
     fileprivate let itemsPerRow: CGFloat = 3
 
-    let test = ["1","2","3","4","12","24","31","46","14","22","30","49"]
-    let testC = [UIColor.black,UIColor.blue,UIColor.green,UIColor.red,UIColor.yellow,UIColor.cyan,UIColor.magenta,UIColor.orange,UIColor.purple,UIColor.brown,UIColor.darkGray,UIColor.blue]
+    var testImg:[UIImage] = []
+    let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        testImg.append(UIImage(named: "sandwitch")!)
+        testImg.append(UIImage(named: "hamburger")!)
+        testImg.append(UIImage(named: "noodle")!)
+        testImg.append(UIImage(named: "pizza")!)
+        testImg.append(UIImage(named: "sushi")!)
 
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
@@ -58,7 +61,7 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FoodCollectionViewCell {
         let cell:FoodCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodcell", for: indexPath) as! FoodCollectionViewCell
-        cell.display(title: self.test[indexPath.row], color: self.testC[indexPath.row])
+        cell.display(title: self.test[indexPath.row], img: self.testImg[indexPath.row])
         return cell
     }
     
