@@ -43,6 +43,7 @@ class AccountViewController: UIViewController {
             if photo != ""{
                 let photoURL = URL(string: photo)!
                 user.photo = try! Data(contentsOf: photoURL)
+                user.photoURL = photo
             }
         }
         if let displayName = snapshot["displayName"] {

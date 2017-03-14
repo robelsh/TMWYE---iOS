@@ -41,7 +41,8 @@ class AccountSettingsViewController: UIViewController {
             "displayName":self.nickNameTextField.text!,
             "phone":self.phoneTextField.text!,
             "email":self.user.email,
-            "uid":self.user.uid
+            "uid":self.user.uid,
+            "photoURL":self.user.photoURL
             ]
         ]
         ref.updateChildValues(update)
