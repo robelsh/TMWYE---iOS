@@ -23,7 +23,37 @@ class ViewController: UITableViewController {
         ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
             self.loadImage(img: filmItem["poster"]!, index: count)
-            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: Data(), rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
+            let movie = Movie()
+            if let title = filmItem["title"]{
+                movie.title = title
+            }
+            if let year = filmItem["year"]{
+                movie.year = year
+            }
+            if let rating = filmItem["rating"]{
+                movie.rating = rating
+            }
+            if let plot = filmItem["plot"]{
+                movie.plot = plot
+            }
+            if let runtime = filmItem["runtime"]{
+                movie.runtime = runtime
+            }
+            if let released = filmItem["released"]{
+                movie.released = released
+            }
+            if let genre = filmItem["genre"]{
+                movie.genre = genre
+            }
+            if let country = filmItem["country"]{
+                movie.country = country
+            }
+            if let imdbId = filmItem["imdbId"]{
+                movie.imdbId = imdbId
+            }
+            if let id = filmItem["id"]{
+                movie.id = id
+            }
             self.movies.append(movie)
             self.tableView.reloadData()
             count=count+1

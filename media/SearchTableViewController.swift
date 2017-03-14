@@ -91,13 +91,11 @@ extension SearchTableViewController: UISearchResultsUpdating {
             if(searchBarText != ""){
                 let film:String = (searchBarText.replacingOccurrences(of: " ", with: "+"))
                 let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: baseURL + film), options: .mutableContainers)) as? [String: Any]
-                //let data = parseJSON(inputData: getJSON(urlToRequest: baseURL + self.searchController.searchBar.text!))
                 let results = dictData?["results"] as! [Dictionary<String,Any>]
-                var i = 0
+
                 for i in 0...results.count-1 {
                     let movie = Movie()
                     movie.title = results[i]["title"] as! String
-                    //let year = results[i]["release_date"] as! String
                     if let year = results[i]["release_date"] as! String? {
                         if(year != ""){
                             let startIndex = year.index(year.startIndex, offsetBy: 4)
