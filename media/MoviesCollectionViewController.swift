@@ -1,5 +1,5 @@
 //
-//  FoodCollectionViewController.swift
+//  MoviesCollectionViewController.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 10/03/2017.
@@ -11,21 +11,32 @@ import UIKit
 private let reuseIdentifier = "Cell"
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
-class FoodCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MoviesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     fileprivate let itemsPerRow: CGFloat = 3
-
+    var search:Bool = false
     var testImg:[UIImage] = []
-    let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi"]
+    let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testImg.append(UIImage(named: "sandwitch")!)
-        testImg.append(UIImage(named: "hamburger")!)
-        testImg.append(UIImage(named: "noodle")!)
-        testImg.append(UIImage(named: "pizza")!)
-        testImg.append(UIImage(named: "sushi")!)
+        testImg.append(UIImage(named: "comedy")!)
+        testImg.append(UIImage(named: "horror")!)
+        testImg.append(UIImage(named: "thriller")!)
+        testImg.append(UIImage(named: "romance")!)
+        testImg.append(UIImage(named: "aventure")!)
+        testImg.append(UIImage(named: "drama")!)
+        testImg.append(UIImage(named: "fantasy")!)
+        testImg.append(UIImage(named: "scifi")!)
+        testImg.append(UIImage(named: "family")!)
+        testImg.append(UIImage(named: "animation")!)
 
+
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
@@ -59,8 +70,8 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         return self.test.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FoodCollectionViewCell {
-        let cell:FoodCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodcell", for: indexPath) as! FoodCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MoviesCollectionViewCell {
+        let cell:MoviesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviecell", for: indexPath) as! MoviesCollectionViewCell
         cell.display(title: self.test[indexPath.row], img: self.testImg[indexPath.row])
         return cell
     }

@@ -11,21 +11,24 @@
 		733133A11E7213DE00E18F0B /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */; };
 		733133A31E72156700E18F0B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A21E72156700E18F0B /* MainViewController.swift */; };
 		733133A51E72B55D00E18F0B /* FoodCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */; };
-		733133A71E72B5C100E18F0B /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */; };
 		734056441E491BB1007A3070 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056431E491BB1007A3070 /* AppDelegate.swift */; };
 		734056461E491BB1007A3070 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056451E491BB1007A3070 /* ViewController.swift */; };
 		734056491E491BB1007A3070 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 734056471E491BB1007A3070 /* Main.storyboard */; };
 		7340564E1E491BB1007A3070 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */; };
 		734056581E491C66007A3070 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734056571E491C66007A3070 /* TableViewCell.swift */; };
 		73730E111E6DD7E800218B21 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73730E101E6DD7E800218B21 /* GoogleService-Info.plist */; };
-		73730E131E6DFB7200218B21 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73730E121E6DFB7200218B21 /* AddViewController.swift */; };
 		73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73730E141E6E06AE00218B21 /* DetailViewController.swift */; };
 		737D5D3E1E70180C009CC757 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3D1E70180C009CC757 /* SignUpViewController.swift */; };
 		737D5D401E701816009CC757 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3F1E701816009CC757 /* LoginViewController.swift */; };
 		73A2FFEC1E706B08000F43C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2FFEB1E706B08000F43C1 /* User.swift */; };
 		73A2FFEE1E7085EF000F43C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73A2FFED1E7085EF000F43C1 /* Assets.xcassets */; };
+		73B940151E76E0B600BE737A /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */; };
+		73B940161E76E0B600BE737A /* MoviesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B940141E76E0B600BE737A /* MoviesCollectionViewController.swift */; };
 		73F5A59E1E70384E0066B42F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5A59D1E70384E0066B42F /* Movie.swift */; };
 		73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F5A5A11E705B150066B42F /* AccountViewController.swift */; };
+		73F8EEBA1E77032900D0FD29 /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8EEB91E77032900D0FD29 /* FoodCollectionViewCell.swift */; };
+		73F8EEBC1E77F2D400D0FD29 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8EEBB1E77F2D400D0FD29 /* SearchTableViewController.swift */; };
+		73F8EEBE1E77F3A100D0FD29 /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F8EEBD1E77F3A100D0FD29 /* SearchListTableViewCell.swift */; };
 		8DC7DB76B9008034814EE58C /* Pods_media.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7F53C5AD0A97B4F1290892 /* Pods_media.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +39,6 @@
 		733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		733133A21E72156700E18F0B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewController.swift; sourceTree = "<group>"; };
-		733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		734056401E491BB1007A3070 /* media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734056431E491BB1007A3070 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		734056451E491BB1007A3070 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,14 +47,18 @@
 		7340564F1E491BB1007A3070 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		734056571E491C66007A3070 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		73730E101E6DD7E800218B21 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		73730E121E6DFB7200218B21 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		73730E141E6E06AE00218B21 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		737D5D3D1E70180C009CC757 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		737D5D3F1E701816009CC757 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		73A2FFEB1E706B08000F43C1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		73A2FFED1E7085EF000F43C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
+		73B940141E76E0B600BE737A /* MoviesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewController.swift; sourceTree = "<group>"; };
 		73F5A59D1E70384E0066B42F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		73F5A5A11E705B150066B42F /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		73F8EEB91E77032900D0FD29 /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
+		73F8EEBB1E77F2D400D0FD29 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		73F8EEBD1E77F3A100D0FD29 /* SearchListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListTableViewCell.swift; sourceTree = "<group>"; };
 		CFC57D4380395D5E727A6D63 /* Pods-media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-media.debug.xcconfig"; path = "Pods/Target Support Files/Pods-media/Pods-media.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,16 +100,19 @@
 				733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */,
 				737D5D3F1E701816009CC757 /* LoginViewController.swift */,
 				737D5D3D1E70180C009CC757 /* SignUpViewController.swift */,
-				73730E141E6E06AE00218B21 /* DetailViewController.swift */,
 				73730E101E6DD7E800218B21 /* GoogleService-Info.plist */,
 				734056431E491BB1007A3070 /* AppDelegate.swift */,
-				734056571E491C66007A3070 /* TableViewCell.swift */,
-				734056451E491BB1007A3070 /* ViewController.swift */,
 				734056471E491BB1007A3070 /* Main.storyboard */,
+				73730E141E6E06AE00218B21 /* DetailViewController.swift */,
+				734056451E491BB1007A3070 /* ViewController.swift */,
+				734056571E491C66007A3070 /* TableViewCell.swift */,
+				73F8EEBB1E77F2D400D0FD29 /* SearchTableViewController.swift */,
+				73F8EEBD1E77F3A100D0FD29 /* SearchListTableViewCell.swift */,
+				73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */,
+				73B940141E76E0B600BE737A /* MoviesCollectionViewController.swift */,
 				733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */,
-				733133A61E72B5C100E18F0B /* FoodCollectionViewCell.swift */,
+				73F8EEB91E77032900D0FD29 /* FoodCollectionViewCell.swift */,
 				733133A21E72156700E18F0B /* MainViewController.swift */,
-				73730E121E6DFB7200218B21 /* AddViewController.swift */,
 				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
 				7340564F1E491BB1007A3070 /* Info.plist */,
 				73F5A59D1E70384E0066B42F /* Movie.swift */,
@@ -259,15 +268,18 @@
 				733133A31E72156700E18F0B /* MainViewController.swift in Sources */,
 				73F5A59E1E70384E0066B42F /* Movie.swift in Sources */,
 				734056581E491C66007A3070 /* TableViewCell.swift in Sources */,
-				73730E131E6DFB7200218B21 /* AddViewController.swift in Sources */,
 				737D5D401E701816009CC757 /* LoginViewController.swift in Sources */,
 				733133A51E72B55D00E18F0B /* FoodCollectionViewController.swift in Sources */,
+				73F8EEBA1E77032900D0FD29 /* FoodCollectionViewCell.swift in Sources */,
 				734056461E491BB1007A3070 /* ViewController.swift in Sources */,
 				734056441E491BB1007A3070 /* AppDelegate.swift in Sources */,
 				73067E761E70AD6400A15551 /* Reachability.swift in Sources */,
-				733133A71E72B5C100E18F0B /* FoodCollectionViewCell.swift in Sources */,
+				73B940161E76E0B600BE737A /* MoviesCollectionViewController.swift in Sources */,
 				73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */,
+				73B940151E76E0B600BE737A /* MoviesCollectionViewCell.swift in Sources */,
 				73A2FFEC1E706B08000F43C1 /* User.swift in Sources */,
+				73F8EEBC1E77F2D400D0FD29 /* SearchTableViewController.swift in Sources */,
+				73F8EEBE1E77F3A100D0FD29 /* SearchListTableViewCell.swift in Sources */,
 				73F5A5A21E705B150066B42F /* AccountViewController.swift in Sources */,
 				733133A11E7213DE00E18F0B /* AccountSettingsViewController.swift in Sources */,
 			);

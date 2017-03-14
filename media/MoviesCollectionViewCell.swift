@@ -8,10 +8,10 @@
 
 import UIKit
 
-class FoodCollectionViewCell: UICollectionViewCell {
+class MoviesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var button: UIButton!
     
     func display(title: String, img: UIImage){
         button.setImage(img, for: .normal)

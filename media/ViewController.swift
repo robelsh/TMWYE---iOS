@@ -10,59 +10,37 @@ import UIKit
 import Firebase
 
 class ViewController: UITableViewController {
-    var test:[String] = ["a","b","c","d"]
-    
-    let DATAS_USER_DEFAULT_KEY:String = "DATA"
-    let IMG_USER_DEFAULT_KEY:String = "IMAGE"
-    let baseURL = "https://www.omdbapi.com"
     var ref: FIRDatabaseReference!
     var movies:[Movie] = []
-    
+    let searchController = UISearchController(searchResultsController: nil)
+
     var tableViewControler = UITableViewController(style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
-        ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
-            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            let url = URL(string: filmItem["poster"]!)
-            let image = try! Data(contentsOf:  url!)
-            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: image, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
-            self.movies.append(movie)
-            self.tableView.reloadData()
-        })
-        
-        ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
-            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            
-            let index = self.movies.index(where: { (movie) -> Bool in
-                movie.imdbId == filmItem["imdbId"]!
+            self.ref = FIRDatabase.database().reference()
+            ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
+                let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
+                let url = URL(string: filmItem["poster"]!)
+                let image = try! Data(contentsOf:  url!)
+                let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: image, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
+                self.movies.append(movie)
+                self.tableView.reloadData()
             })
-            self.movies.remove(at: index!)
-            self.tableView.reloadData()
-        })
-        /*
-        ref.child("medias").observe(.childChanged, with: { (snapshot) -> Void in
-            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            let index = self.film.index(of: filmItem["name"]!)!
-            self.film[index] = filmItem["name"]!
-            self.updateDatas()
-        })*/
-    
+            
+            ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
+                let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
+                
+                let index = self.movies.index(where: { (movie) -> Bool in
+                    movie.imdbId == filmItem["imdbId"]!
+                })
+                self.movies.remove(at: index!)
+                self.tableView.reloadData()
+            })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func getJSON(urlToRequest:String) -> Data {
-        let data = try? Data(contentsOf: URL(string: urlToRequest)!)
-        return data!
-    }
-    
-    func parseJSON(inputData:Data) -> Dictionary<String,String> {
-        let dictData = (try! JSONSerialization.jsonObject(with: inputData, options: .mutableContainers)) as! Dictionary<String,String>
-        return dictData
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
@@ -101,4 +79,5 @@ class ViewController: UITableViewController {
         }
     }
 }
+
 
