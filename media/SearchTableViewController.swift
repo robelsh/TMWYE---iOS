@@ -23,6 +23,7 @@ class SearchTableViewController: UITableViewController {
             searchController.searchBar.delegate = self
             definesPresentationContext = true
             searchController.searchBar.placeholder = "Looking for a movie ?"
+            searchController.searchBar.tintColor = UIColor.white
             searchController.searchBar.barTintColor = UIColor.darkGray
             searchController.dimsBackgroundDuringPresentation = false
             tableView.tableHeaderView = searchController.searchBar
@@ -118,19 +119,20 @@ extension SearchTableViewController: UISearchResultsUpdating {
                 let film:String = (searchBarText.replacingOccurrences(of: " ", with: "+"))
                 let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: baseURL+"search/movie?api_key=72e58ed9123ba68d1f814768448360c0&query="+film), options: .mutableContainers)) as? [String: Any]
                 let results = dictData?["results"] as! [Dictionary<String,Any>]
-
-                for i in 0...results.count-1 {
-                    let movie = Movie()
-                    movie.title = results[i]["title"] as! String
-                    let id = results[i]["id"] as! NSNumber
-                    movie.imdbId = id.stringValue
-                    if let year = results[i]["release_date"] as! String? {
-                        if(year != ""){
-                            let startIndex = year.index(year.startIndex, offsetBy: 4)
-                            movie.year = year.substring(to: startIndex)
+                if !results.isEmpty {
+                    for i in 0...results.count-1 {
+                        let movie = Movie()
+                        movie.title = results[i]["title"] as! String
+                        let id = results[i]["id"] as! NSNumber
+                        movie.imdbId = id.stringValue
+                        if let year = results[i]["release_date"] as! String? {
+                            if(year != ""){
+                                let startIndex = year.index(year.startIndex, offsetBy: 4)
+                                movie.year = year.substring(to: startIndex)
+                            }
                         }
+                        self.movies.append(movie)
                     }
-                    self.movies.append(movie)
                 }
             }
             self.tableView.reloadData()
