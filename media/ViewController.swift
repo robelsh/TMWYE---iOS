@@ -18,25 +18,34 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            self.ref = FIRDatabase.database().reference()
-            ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
-                let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-                let url = URL(string: filmItem["poster"]!)
-                let image = try! Data(contentsOf:  url!)
-                let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: image, rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
-                self.movies.append(movie)
-                self.tableView.reloadData()
-            })
+        self.ref = FIRDatabase.database().reference()
+        var count:Int = 0
+        ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
+            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
+            self.loadImage(img: filmItem["poster"]!, index: count)
+            let movie = Movie(title: filmItem["title"]!, year: filmItem["year"]!, poster: Data(), rating: filmItem["rating"]!, plot: filmItem["plot"]!, runtime: filmItem["runtime"]!, released: filmItem["released"]!, genre: filmItem["genre"]!, country: filmItem["country"]!, imdbId: filmItem["imdbId"]!, id:filmItem["id"]!)
+            self.movies.append(movie)
+            self.tableView.reloadData()
+            count=count+1
+        })
             
-            ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
-                let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-                
-                let index = self.movies.index(where: { (movie) -> Bool in
-                    movie.imdbId == filmItem["imdbId"]!
-                })
-                self.movies.remove(at: index!)
-                self.tableView.reloadData()
+        ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
+            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
+            let index = self.movies.index(where: { (movie) -> Bool in
+                movie.imdbId == filmItem["imdbId"]!
             })
+            self.movies.remove(at: index!)
+            self.tableView.reloadData()
+        })
+    }
+    
+    func loadImage(img:String,index:Int){
+        DispatchQueue.main.async(execute: {
+            let url = URL(string: img)
+            let image = try! Data(contentsOf:  url!)
+            self.movies[index].poster = image
+            self.tableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
