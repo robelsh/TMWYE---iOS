@@ -95,31 +95,71 @@
 		734056421E491BB1007A3070 /* media */ = {
 			isa = PBXGroup;
 			children = (
+				736546481E786AB000E271E1 /* Authentification */,
+				736546471E786A7E00E271E1 /* Account */,
+				736546461E786A7500E271E1 /* Food */,
+				736546451E786A6700E271E1 /* Movie */,
+				736546441E786A5100E271E1 /* Model */,
 				73A2FFED1E7085EF000F43C1 /* Assets.xcassets */,
-				73F5A5A11E705B150066B42F /* AccountViewController.swift */,
-				733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */,
-				737D5D3F1E701816009CC757 /* LoginViewController.swift */,
-				737D5D3D1E70180C009CC757 /* SignUpViewController.swift */,
 				73730E101E6DD7E800218B21 /* GoogleService-Info.plist */,
 				734056431E491BB1007A3070 /* AppDelegate.swift */,
 				734056471E491BB1007A3070 /* Main.storyboard */,
+				733133A21E72156700E18F0B /* MainViewController.swift */,
+				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
+				7340564F1E491BB1007A3070 /* Info.plist */,
+				73067E751E70AD6400A15551 /* Reachability.swift */,
+			);
+			path = media;
+			sourceTree = "<group>";
+		};
+		736546441E786A5100E271E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73F5A59D1E70384E0066B42F /* Movie.swift */,
+				73A2FFEB1E706B08000F43C1 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		736546451E786A6700E271E1 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
 				73730E141E6E06AE00218B21 /* DetailViewController.swift */,
-				734056451E491BB1007A3070 /* ViewController.swift */,
 				734056571E491C66007A3070 /* TableViewCell.swift */,
 				73F8EEBB1E77F2D400D0FD29 /* SearchTableViewController.swift */,
 				73F8EEBD1E77F3A100D0FD29 /* SearchListTableViewCell.swift */,
 				73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */,
 				73B940141E76E0B600BE737A /* MoviesCollectionViewController.swift */,
+				734056451E491BB1007A3070 /* ViewController.swift */,
+			);
+			name = Movie;
+			sourceTree = "<group>";
+		};
+		736546461E786A7500E271E1 /* Food */ = {
+			isa = PBXGroup;
+			children = (
 				733133A41E72B55D00E18F0B /* FoodCollectionViewController.swift */,
 				73F8EEB91E77032900D0FD29 /* FoodCollectionViewCell.swift */,
-				733133A21E72156700E18F0B /* MainViewController.swift */,
-				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
-				7340564F1E491BB1007A3070 /* Info.plist */,
-				73F5A59D1E70384E0066B42F /* Movie.swift */,
-				73A2FFEB1E706B08000F43C1 /* User.swift */,
-				73067E751E70AD6400A15551 /* Reachability.swift */,
 			);
-			path = media;
+			name = Food;
+			sourceTree = "<group>";
+		};
+		736546471E786A7E00E271E1 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				73F5A5A11E705B150066B42F /* AccountViewController.swift */,
+				733133A01E7213DE00E18F0B /* AccountSettingsViewController.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		736546481E786AB000E271E1 /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				737D5D3F1E701816009CC757 /* LoginViewController.swift */,
+				737D5D3D1E70180C009CC757 /* SignUpViewController.swift */,
+			);
+			name = Authentification;
 			sourceTree = "<group>";
 		};
 		F56E437E220FC28A4A1CFD23 /* Frameworks */ = {
