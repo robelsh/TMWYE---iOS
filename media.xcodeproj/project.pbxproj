@@ -125,12 +125,12 @@
 			isa = PBXGroup;
 			children = (
 				73730E141E6E06AE00218B21 /* DetailViewController.swift */,
+				734056451E491BB1007A3070 /* ViewController.swift */,
 				734056571E491C66007A3070 /* TableViewCell.swift */,
 				73F8EEBB1E77F2D400D0FD29 /* SearchTableViewController.swift */,
 				73F8EEBD1E77F3A100D0FD29 /* SearchListTableViewCell.swift */,
-				73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */,
 				73B940141E76E0B600BE737A /* MoviesCollectionViewController.swift */,
-				734056451E491BB1007A3070 /* ViewController.swift */,
+				73B940131E76E0B600BE737A /* MoviesCollectionViewCell.swift */,
 			);
 			name = Movie;
 			sourceTree = "<group>";

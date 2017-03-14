@@ -16,7 +16,7 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
     fileprivate let itemsPerRow: CGFloat = 3
 
     var testImg:[UIImage] = []
-    let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi"]
+    let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi", "Salad"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,7 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         testImg.append(UIImage(named: "noodle")!)
         testImg.append(UIImage(named: "pizza")!)
         testImg.append(UIImage(named: "sushi")!)
+        testImg.append(UIImage(named: "salad")!)
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
