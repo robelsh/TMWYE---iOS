@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Sushi_000000_25.png",
+      "filename" : "Sushi_25.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Sushi_000000_50.png",
+      "filename" : "Sushi_50.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Sushi_000000_100.png",
+      "filename" : "Sushi_100.png",
       "scale" : "3x"
     }
   ],
