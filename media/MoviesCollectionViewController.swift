@@ -14,7 +14,7 @@ fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0
 class MoviesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     fileprivate let itemsPerRow: CGFloat = 3
-    
+    var search:Bool = false
     var testImg:[UIImage] = []
     let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation"]
     
