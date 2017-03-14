@@ -100,14 +100,14 @@
 				736546461E786A7500E271E1 /* Food */,
 				736546451E786A6700E271E1 /* Movie */,
 				736546441E786A5100E271E1 /* Model */,
-				73A2FFED1E7085EF000F43C1 /* Assets.xcassets */,
-				73730E101E6DD7E800218B21 /* GoogleService-Info.plist */,
+				73067E751E70AD6400A15551 /* Reachability.swift */,
 				734056431E491BB1007A3070 /* AppDelegate.swift */,
-				734056471E491BB1007A3070 /* Main.storyboard */,
 				733133A21E72156700E18F0B /* MainViewController.swift */,
+				734056471E491BB1007A3070 /* Main.storyboard */,
 				7340564C1E491BB1007A3070 /* LaunchScreen.storyboard */,
 				7340564F1E491BB1007A3070 /* Info.plist */,
-				73067E751E70AD6400A15551 /* Reachability.swift */,
+				73730E101E6DD7E800218B21 /* GoogleService-Info.plist */,
+				73A2FFED1E7085EF000F43C1 /* Assets.xcassets */,
 			);
 			path = media;
 			sourceTree = "<group>";
