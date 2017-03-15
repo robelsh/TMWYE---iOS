@@ -15,15 +15,39 @@ class ViewController: UITableViewController {
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
     var titleView:String = ""
+    var genreId:NSNumber = 0
     var tableViewControler = UITableViewController(style: .plain)
+    let baseURL = "https://api.themoviedb.org/3/genre/"
+    let suiteURL = "/movies?api_key=72e58ed9123ba68d1f814768448360c0&language=en-US&include_adult=false&sort_by=created_at.asc"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView
         SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
-        var count:Int = 0
-        ref.child("medias").observe(.value, with: { snapshot in
+        //var count:Int = 0
+        let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: self.baseURL + self.genreId.stringValue + self.suiteURL), options: .mutableContainers)) as? [String: Any]
+        let results = dictData?["results"] as! [Dictionary<String,Any>]
+        if !results.isEmpty {
+            for i in 0...results.count-1 {
+                let movie = Movie()
+                movie.title = results[i]["title"] as! String
+                let id = results[i]["id"] as! NSNumber
+                movie.imdbId = id.stringValue
+                if let year = results[i]["release_date"] as! String? {
+                    if(year != ""){
+                        let startIndex = year.index(year.startIndex, offsetBy: 4)
+                        movie.year = year.substring(to: startIndex)
+                    }
+                }
+                self.movies.append(movie)
+            }
+        }
+        self.tableView.reloadData()
+        SwiftSpinner.hide()
+
+        
+        /*ref.child("medias").observe(.value, with: { snapshot in
             for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                 let childItem = child.value as! [String:String]
                 let movie = Movie()
@@ -72,7 +96,7 @@ class ViewController: UITableViewController {
             })
             self.movies.remove(at: index!)
             self.tableView.reloadData()
-        })
+        })*/
     }
     
     func loadImage(img:String,index:Int){
@@ -83,7 +107,17 @@ class ViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-
+    
+    func getJSON(urlToRequest:String) -> Data {
+        let data = try? Data(contentsOf: URL(string: urlToRequest)!)
+        return data!
+    }
+    
+    func parseJSON(inputData:Data) -> Dictionary<String,String> {
+        let dictData = (try! JSONSerialization.jsonObject(with: inputData, options: .mutableContainers)) as! Dictionary<String,String>
+        return dictData
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

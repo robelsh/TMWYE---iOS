@@ -20,63 +20,28 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     var testImg:[UIImage] = []
     let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation","Action","Crime","Documentary","History","Western","Music","War","Mystery"]
     var genres:[String] = []
-    var genresImg:[UIImage] = []
-
+    var genresImgs:[UIImage] = []
+    var genresIds:[NSNumber] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SwiftSpinner.show("Loading Genres, please wait...")
 
         self.ref = FIRDatabase.database().reference()
         ref.child("genres").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
-            print("ok")
             for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 let childItem = child.value as! Dictionary<String,Any>
-                print(childItem)
                 if let name = childItem["name"] as? String {
-                    self.genresImg.append(UIImage(named: name)!)
+                    self.genresImgs.append(UIImage(named: name)!)
                     self.genres.append(name)
+                }
+                if let id = childItem["id"] as? NSNumber {
+                    self.genresIds.append(id)
                 }
             }
             self.collectionView?.reloadData()
             SwiftSpinner.hide()
         })
-        /*
-        testImg.append(UIImage(named: "drama")!)
-        testImg.append(UIImage(named: "horror")!)
-        testImg.append(UIImage(named: "thriller")!)
-        testImg.append(UIImage(named: "romance")!)
-        testImg.append(UIImage(named: "aventure")!)
-        testImg.append(UIImage(named: "comedy")!)
-        testImg.append(UIImage(named: "fantasy")!)
-        testImg.append(UIImage(named: "scifi")!)
-        testImg.append(UIImage(named: "family")!)
-        testImg.append(UIImage(named: "animation")!)
-        testImg.append(UIImage(named: "action")!)
-        testImg.append(UIImage(named: "crime")!)
-        testImg.append(UIImage(named: "documentary")!)
-        testImg.append(UIImage(named: "history")!)
-        testImg.append(UIImage(named: "western")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)
-        testImg.append(UIImage(named: "music")!)
-        testImg.append(UIImage(named: "war")!)
-        testImg.append(UIImage(named: "mystery")!)*/
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -123,7 +88,7 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MoviesCollectionViewCell {
         let cell:MoviesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviecell", for: indexPath) as! MoviesCollectionViewCell
-        cell.display(title: self.genres[indexPath.row], img: self.genresImg[indexPath.row])
+        cell.display(title: self.genres[indexPath.row], img: self.genresImgs[indexPath.row])
         return cell
     }
     
@@ -170,10 +135,11 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenre" {
-            let detailsVC = segue.destination as! ViewController
+            let list = segue.destination as! ViewController
             let cell = sender as! MoviesCollectionViewCell
             let indexPaths = self.collectionView?.indexPath(for: cell)
-            detailsVC.titleView = test[(indexPaths?.row)!]
+            list.titleView = genres[(indexPaths?.row)!]
+            list.genreId = genresIds[(indexPaths?.row)!]
         }
     }
 
