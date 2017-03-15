@@ -8,57 +8,64 @@
 
 import UIKit
 import Firebase
+import SwiftSpinner
 
 class ViewController: UITableViewController {
     var ref: FIRDatabaseReference!
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
-
+    let titleView:String = ""
     var tableViewControler = UITableViewController(style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = self.titleView
+        print(self.title)
+        SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
         var count:Int = 0
-        ref.child("medias").observe(.childAdded, with: { (snapshot) -> Void in
-            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            self.loadImage(img: filmItem["poster"]!, index: count)
-            let movie = Movie()
-            if let title = filmItem["title"]{
-                movie.title = title
+        ref.child("medias").observe(.value, with: { snapshot in
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                let childItem = child.value as! [String:String]
+                let movie = Movie()
+                self.loadImage(img: childItem["poster"]!, index: count)
+                if let title = childItem["title"]{
+                    movie.title = title
+                }
+                if let year = childItem["year"]{
+                    movie.year = year
+                }
+                if let rating = childItem["rating"]{
+                    movie.rating = rating
+                }
+                if let plot = childItem["plot"]{
+                    movie.plot = plot
+                }
+                if let runtime = childItem["runtime"]{
+                    movie.runtime = runtime
+                }
+                if let released = childItem["released"]{
+                    movie.released = released
+                }
+                if let genre = childItem["genre"]{
+                    movie.genre = genre
+                }
+                if let country = childItem["country"]{
+                    movie.country = country
+                }
+                if let imdbId = childItem["imdbId"]{
+                    movie.imdbId = imdbId
+                }
+                if let id = childItem["id"]{
+                    movie.id = id
+                }
+                self.movies.append(movie)
+                count=count+1
             }
-            if let year = filmItem["year"]{
-                movie.year = year
-            }
-            if let rating = filmItem["rating"]{
-                movie.rating = rating
-            }
-            if let plot = filmItem["plot"]{
-                movie.plot = plot
-            }
-            if let runtime = filmItem["runtime"]{
-                movie.runtime = runtime
-            }
-            if let released = filmItem["released"]{
-                movie.released = released
-            }
-            if let genre = filmItem["genre"]{
-                movie.genre = genre
-            }
-            if let country = filmItem["country"]{
-                movie.country = country
-            }
-            if let imdbId = filmItem["imdbId"]{
-                movie.imdbId = imdbId
-            }
-            if let id = filmItem["id"]{
-                movie.id = id
-            }
-            self.movies.append(movie)
             self.tableView.reloadData()
-            count=count+1
+            SwiftSpinner.hide()
         })
-            
+        
         ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
             let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
             let index = self.movies.index(where: { (movie) -> Bool in

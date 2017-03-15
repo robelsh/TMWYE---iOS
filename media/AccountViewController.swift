@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
+import SwiftSpinner
 
 class AccountViewController: UIViewController {
 
@@ -21,6 +21,8 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SwiftSpinner.show("Loading, please wait...")
+
         profilePic.backgroundColor = UIColor.black
         profilePic.layer.cornerRadius = 45
         profilePic.clipsToBounds = true
@@ -32,6 +34,7 @@ class AccountViewController: UIViewController {
             let userDict:Dictionary<String,Dictionary<String,String>> = snapshot.value as! Dictionary<String,Dictionary<String,String>>
             let userData = userDict[uid]
             self.loadUser(snapshot: userData!,uid: uid)
+            SwiftSpinner.hide()
         })
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observe(.childChanged, with: { (snapshot) -> Void in
             self.loadUser(snapshot: snapshot.value as! Dictionary<String,String>,uid: uid)

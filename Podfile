@@ -6,5 +6,6 @@ target ‘media’ do
   pod 'Firebase/Database'
   pod 'Firebase/Auth’
   pod 'GoogleSignIn'
+  pod 'SwiftSpinner'
 
 end
