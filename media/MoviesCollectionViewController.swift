@@ -111,10 +111,19 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return false
     }
-
+*/
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+        print("a")
     }
-    */
+ 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGenre" {
+            let detailsVC = segue.destination as! ViewController
+            let cell = sender as! MoviesCollectionViewCell
+            let indexPaths = self.collectionView?.indexPath(for: cell)
+            detailsVC.titleView = test[(indexPaths?.row)!]
+        }
+    }
 
 }

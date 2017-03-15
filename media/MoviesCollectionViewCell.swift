@@ -11,10 +11,10 @@ import UIKit
 class MoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
     
     func display(title: String, img: UIImage){
-        button.setImage(img, for: .normal)
+        imageView.image = img
         self.title.text = title
     }
 }

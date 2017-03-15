@@ -14,13 +14,12 @@ class ViewController: UITableViewController {
     var ref: FIRDatabaseReference!
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
-    let titleView:String = ""
+    var titleView:String = ""
     var tableViewControler = UITableViewController(style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView
-        print(self.title)
         SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
         var count:Int = 0
