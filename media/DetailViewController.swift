@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var titleTextLabel: UILabel!
@@ -20,7 +21,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genre: UILabel!
 
     var movie:Movie = Movie()
-    
+    var ref: FIRDatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = movie.title
@@ -33,6 +35,17 @@ class DetailViewController: UIViewController {
         self.runtime.text = movie.runtime
         self.titleTextLabel.text = movie.title
         self.image.image = UIImage(data: movie.poster)
+    }
+    
+    @IBAction func addFilm(_ sender: Any) {
+        self.ref = FIRDatabase.database().reference()
+        let update = ["medias/\(self.movie.imdbId)":
+            ["imdbId":self.movie.imdbId,
+             "vote": 1
+            ]
+        ]
+        ref.updateChildValues(update)
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -442,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CFC57D4380395D5E727A6D63 /* Pods-media.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R8ERH3DBF5;
 				INFOPLIST_FILE = media/Info.plist;
@@ -456,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 189D2175C278E1C4F4B8026E /* Pods-media.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R8ERH3DBF5;
 				INFOPLIST_FILE = media/Info.plist;

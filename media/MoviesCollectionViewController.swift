@@ -17,8 +17,6 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     var ref: FIRDatabaseReference!
     fileprivate let itemsPerRow: CGFloat = 3
     var search:Bool = false
-    var testImg:[UIImage] = []
-    let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation","Action","Crime","Documentary","History","Western","Music","War","Mystery"]
     var genres:[String] = []
     var genresImgs:[UIImage] = []
     var genresIds:[NSNumber] = []
@@ -49,8 +47,6 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
     
     func getJSON(urlToRequest:String) -> Data {
@@ -60,29 +56,14 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return self.genres.count
     }
 
@@ -102,36 +83,8 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-*/
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-        print("a")
     }
- 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenre" {

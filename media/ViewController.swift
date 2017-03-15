@@ -25,7 +25,6 @@ class ViewController: UITableViewController {
         self.title = self.titleView
         SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
-        //var count:Int = 0
         let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: self.baseURL + self.genreId.stringValue + self.suiteURL), options: .mutableContainers)) as? [String: Any]
         let results = dictData?["results"] as! [Dictionary<String,Any>]
         if !results.isEmpty {
@@ -40,63 +39,15 @@ class ViewController: UITableViewController {
                         movie.year = year.substring(to: startIndex)
                     }
                 }
+                if let poster = results[i]["poster_path"] as! String? {
+                    movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                }
                 self.movies.append(movie)
             }
         }
+        
         self.tableView.reloadData()
         SwiftSpinner.hide()
-
-        
-        /*ref.child("medias").observe(.value, with: { snapshot in
-            for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
-                let childItem = child.value as! [String:String]
-                let movie = Movie()
-                self.loadImage(img: childItem["poster"]!, index: count)
-                if let title = childItem["title"]{
-                    movie.title = title
-                }
-                if let year = childItem["year"]{
-                    movie.year = year
-                }
-                if let rating = childItem["rating"]{
-                    movie.rating = rating
-                }
-                if let plot = childItem["plot"]{
-                    movie.plot = plot
-                }
-                if let runtime = childItem["runtime"]{
-                    movie.runtime = runtime
-                }
-                if let released = childItem["released"]{
-                    movie.released = released
-                }
-                if let genre = childItem["genre"]{
-                    movie.genre = genre
-                }
-                if let country = childItem["country"]{
-                    movie.country = country
-                }
-                if let imdbId = childItem["imdbId"]{
-                    movie.imdbId = imdbId
-                }
-                if let id = childItem["id"]{
-                    movie.id = id
-                }
-                self.movies.append(movie)
-                count=count+1
-            }
-            self.tableView.reloadData()
-            SwiftSpinner.hide()
-        })
-        
-        ref.child("medias").observe(.childRemoved, with: { (snapshot) -> Void in
-            let filmItem:Dictionary<String,String> = snapshot.value as! Dictionary<String,String>
-            let index = self.movies.index(where: { (movie) -> Bool in
-                movie.imdbId == filmItem["imdbId"]!
-            })
-            self.movies.remove(at: index!)
-            self.tableView.reloadData()
-        })*/
     }
     
     func loadImage(img:String,index:Int){
@@ -132,13 +83,12 @@ class ViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
-        if editingStyle == .delete
-        {
-            ref.child("medias/" + movies[indexPath.row].id).removeValue()
-            self.tableView.reloadData()
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if tableView.isEditing {
+            return .delete
         }
+        
+        return .none
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,8 +104,36 @@ class ViewController: UITableViewController {
         if cell != nil {
             let indexPath = tableView.indexPath(for: cell!)
             let svc = segue.destination as! DetailViewController;
-            svc.movie = self.movies[(indexPath?.row)!]
+            let imdbID:String = self.movies[(indexPath?.row)!].imdbId
+            let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://api.themoviedb.org/3/movie/"+imdbID+"?api_key=72e58ed9123ba68d1f814768448360c0"), options: .mutableContainers)) as? [String: Any]
+            let movie:Movie = Movie()
+            movie.imdbId = imdbID
+            if let datas = dictData {
+                movie.title = datas["title"] as! String
+                if let runtime = datas["runtime"] as! NSNumber? {
+                    movie.runtime = runtime.stringValue
+                }
+                if let poster = datas["poster_path"] as! String? {
+                    movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                }
+                movie.plot = datas["overview"] as! String
+                movie.released = datas["release_date"] as! String
+                if let rating = datas["vote_average"] as! NSNumber? {
+                    movie.rating = rating.stringValue
+                }
+                
+                if let genre = datas["genres"] as? [[String:Any]] {
+                    for i in 0...genre.count-1 {
+                        let genreItem = genre[i]["name"] as! String
+                        movie.genre = movie.genre + " " + genreItem
+                    }
+                }
+                
+                svc.movie = movie
+    
+            }
         }
+
     }
 }
 
