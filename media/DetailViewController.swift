@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import Alamofire
+import SwiftSpinner
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var titleTextLabel: UILabel!
@@ -22,19 +24,49 @@ class DetailViewController: UIViewController {
 
     var movie:Movie = Movie()
     var ref: FIRDatabaseReference!
-
+    var imdbId:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = movie.title
-        self.country.text = movie.country
-        self.genre.text = movie.genre
-        self.plot.text = movie.plot
-        self.rating.text = movie.rating
-        self.released.text = movie.released
-        self.year.text = movie.year
-        self.runtime.text = movie.runtime
-        self.titleTextLabel.text = movie.title
-        self.image.image = UIImage(data: movie.poster)
+        SwiftSpinner.show("Loading, please wait...")
+        self.loadDatas()
+    }
+    
+    func loadDatas(){
+        Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0").responseJSON { response in
+            if let JSON = response.result.value as? [String: Any] {
+                self.movie.title = JSON["title"] as! String
+                if let runtime = JSON["runtime"] as! NSNumber? {
+                    self.movie.runtime = runtime.stringValue
+                }
+                if let poster = JSON["poster_path"] as! String? {
+                    self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                }
+                self.movie.plot = JSON["overview"] as! String
+                self.movie.released = JSON["release_date"] as! String
+                if let rating = JSON["vote_average"] as! NSNumber? {
+                    self.movie.rating = rating.stringValue
+                }
+                
+                if let genre = JSON["genres"] as? [[String:Any]] {
+                    for i in 0...genre.count-1 {
+                        let genreItem = genre[i]["name"] as! String
+                        self.movie.genre = self.movie.genre + " " + genreItem
+                    }
+                }
+                self.title = self.movie.title
+                self.country.text = self.movie.country
+                self.genre.text = self.movie.genre
+                self.plot.text = self.movie.plot
+                self.rating.text = self.movie.rating
+                self.released.text = self.movie.released
+                self.year.text = self.movie.year
+                self.runtime.text = self.movie.runtime
+                self.titleTextLabel.text = self.movie.title
+                self.image.image = UIImage(data: self.movie.poster)
+            }
+            SwiftSpinner.hide()
+        }
     }
     
     @IBAction func addFilm(_ sender: Any) {

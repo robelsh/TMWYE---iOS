@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftSpinner
+import Alamofire
 
 class ViewController: UITableViewController {
     var ref: FIRDatabaseReference!
@@ -24,35 +25,30 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         self.title = self.titleView
         SwiftSpinner.show("Loading, please wait...")
-        self.ref = FIRDatabase.database().reference()
-        self.loadDatas()
-        SwiftSpinner.hide()
-    }
-    
-    func loadDatas(){
-        DispatchQueue.main.async {
-            let dictData = (try! JSONSerialization.jsonObject(with: self.getJSON(urlToRequest: self.baseURL + self.genreId.stringValue + self.suiteURL), options: .mutableContainers)) as? [String: Any]
-            let results = dictData?["results"] as! [Dictionary<String,Any>]
-            if !results.isEmpty {
-                for i in 0...results.count-1 {
-                    let movie = Movie()
-                    movie.title = results[i]["title"] as! String
-                    let id = results[i]["id"] as! NSNumber
-                    movie.imdbId = id.stringValue
-                    if let year = results[i]["release_date"] as! String? {
-                        if(year != ""){
-                            let startIndex = year.index(year.startIndex, offsetBy: 4)
-                            movie.year = year.substring(to: startIndex)
+        Alamofire.request(self.baseURL + self.genreId.stringValue + self.suiteURL).responseJSON { response in
+            if let JSON = response.result.value as? [String: Any] {
+                let results = JSON["results"] as! [Dictionary<String,Any>]
+                if !results.isEmpty {
+                    for i in 0...results.count-1 {
+                        let movie = Movie()
+                        movie.title = results[i]["title"] as! String
+                        let id = results[i]["id"] as! NSNumber
+                        movie.imdbId = id.stringValue
+                        if let year = results[i]["release_date"] as! String? {
+                            if(year != ""){
+                                let startIndex = year.index(year.startIndex, offsetBy: 4)
+                                movie.year = year.substring(to: startIndex)
+                            }
                         }
+                        if let poster = results[i]["poster_path"] as! String? {
+                            movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                        }
+                        self.movies.append(movie)
                     }
-                    if let poster = results[i]["poster_path"] as! String? {
-                        movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                    }
-                    self.movies.append(movie)
                 }
             }
-            SwiftSpinner.hide()
             self.tableView.reloadData()
+            SwiftSpinner.hide()
         }
     }
     
@@ -110,36 +106,8 @@ class ViewController: UITableViewController {
         if cell != nil {
             let indexPath = tableView.indexPath(for: cell!)
             let svc = segue.destination as! DetailViewController;
-            let imdbID:String = self.movies[(indexPath?.row)!].imdbId
-            let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://api.themoviedb.org/3/movie/"+imdbID+"?api_key=72e58ed9123ba68d1f814768448360c0"), options: .mutableContainers)) as? [String: Any]
-            let movie:Movie = Movie()
-            movie.imdbId = imdbID
-            if let datas = dictData {
-                movie.title = datas["title"] as! String
-                if let runtime = datas["runtime"] as! NSNumber? {
-                    movie.runtime = runtime.stringValue
-                }
-                if let poster = datas["poster_path"] as! String? {
-                    movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                }
-                movie.plot = datas["overview"] as! String
-                movie.released = datas["release_date"] as! String
-                if let rating = datas["vote_average"] as! NSNumber? {
-                    movie.rating = rating.stringValue
-                }
-                
-                if let genre = datas["genres"] as? [[String:Any]] {
-                    for i in 0...genre.count-1 {
-                        let genreItem = genre[i]["name"] as! String
-                        movie.genre = movie.genre + " " + genreItem
-                    }
-                }
-                
-                svc.movie = movie
-    
-            }
+            svc.imdbId = self.movies[(indexPath?.row)!].imdbId            
         }
-
     }
 }
 

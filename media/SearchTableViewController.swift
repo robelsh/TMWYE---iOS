@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchTableViewController: UITableViewController {
 
@@ -74,33 +75,7 @@ class SearchTableViewController: UITableViewController {
         if cell != nil {
             let indexPath = tableView.indexPath(for: cell!)
             let svc = segue.destination as! DetailViewController;
-            let film:String = self.movies[(indexPath?.row)!].imdbId
-            let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: baseURL+"movie/"+film+"?api_key=72e58ed9123ba68d1f814768448360c0"), options: .mutableContainers)) as? [String: Any]
-            let movie:Movie = Movie()
-            if let datas = dictData {
-                movie.title = datas["title"] as! String
-                if let runtime = datas["runtime"] as! NSNumber? {
-                    movie.runtime = runtime.stringValue
-                }
-                if let poster = datas["poster_path"] as! String? {
-                    movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                }
-                movie.plot = datas["overview"] as! String
-                movie.released = datas["release_date"] as! String
-                if let rating = datas["vote_average"] as! NSNumber? {
-                    movie.rating = rating.stringValue
-                }
-                
-                if let genre = datas["genres"] as? [[String:Any]] {
-                    for i in 0...genre.count-1 {
-                        let genreItem = genre[i]["name"] as! String
-                        movie.genre = movie.genre + " " + genreItem
-                    }
-                }
-                
-                svc.movie = movie
-
-            }
+            svc.imdbId = self.movies[(indexPath?.row)!].imdbId
         }
     }
 }
@@ -116,25 +91,29 @@ extension SearchTableViewController: UISearchResultsUpdating {
         if let searchBarText = self.searchController.searchBar.text {
             if(searchBarText != ""){
                 let film:String = (searchBarText.replacingOccurrences(of: " ", with: "+"))
-                let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: baseURL+"search/movie?api_key=72e58ed9123ba68d1f814768448360c0&query="+film), options: .mutableContainers)) as? [String: Any]
-                let results = dictData?["results"] as! [Dictionary<String,Any>]
-                if !results.isEmpty {
-                    for i in 0...results.count-1 {
-                        let movie = Movie()
-                        movie.title = results[i]["title"] as! String
-                        let id = results[i]["id"] as! NSNumber
-                        movie.imdbId = id.stringValue
-                        if let year = results[i]["release_date"] as! String? {
-                            if(year != ""){
-                                let startIndex = year.index(year.startIndex, offsetBy: 4)
-                                movie.year = year.substring(to: startIndex)
+                
+                Alamofire.request(baseURL+"search/movie?api_key=72e58ed9123ba68d1f814768448360c0&query="+film).responseJSON { response in
+                    if let JSON = response.result.value as? [String: Any] {
+                        let results = JSON["results"] as! [Dictionary<String,Any>]
+                        if !results.isEmpty {
+                            for i in 0...results.count-1 {
+                                let movie = Movie()
+                                movie.title = results[i]["title"] as! String
+                                let id = results[i]["id"] as! NSNumber
+                                movie.imdbId = id.stringValue
+                                if let year = results[i]["release_date"] as! String? {
+                                    if(year != ""){
+                                        let startIndex = year.index(year.startIndex, offsetBy: 4)
+                                        movie.year = year.substring(to: startIndex)
+                                    }
+                                }
+                                self.movies.append(movie)
                             }
                         }
-                        self.movies.append(movie)
+                        self.tableView.reloadData()
                     }
                 }
             }
-            self.tableView.reloadData()
         }
         
     }
