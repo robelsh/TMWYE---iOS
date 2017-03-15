@@ -39,13 +39,13 @@ class DetailViewController: UIViewController {
     
     @IBAction func addFilm(_ sender: Any) {
         self.ref = FIRDatabase.database().reference()
+        let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
         let update = ["medias/\(self.movie.imdbId)":
             ["imdbId":self.movie.imdbId,
-             "vote": 1
+             "votes": ["uid": uid]
             ]
         ]
         ref.updateChildValues(update)
-        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

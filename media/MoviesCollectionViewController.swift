@@ -40,12 +40,6 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
             self.collectionView?.reloadData()
             SwiftSpinner.hide()
         })
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     

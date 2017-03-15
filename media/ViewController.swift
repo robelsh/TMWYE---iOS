@@ -25,29 +25,35 @@ class ViewController: UITableViewController {
         self.title = self.titleView
         SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
-        let dictData = (try! JSONSerialization.jsonObject(with: getJSON(urlToRequest: self.baseURL + self.genreId.stringValue + self.suiteURL), options: .mutableContainers)) as? [String: Any]
-        let results = dictData?["results"] as! [Dictionary<String,Any>]
-        if !results.isEmpty {
-            for i in 0...results.count-1 {
-                let movie = Movie()
-                movie.title = results[i]["title"] as! String
-                let id = results[i]["id"] as! NSNumber
-                movie.imdbId = id.stringValue
-                if let year = results[i]["release_date"] as! String? {
-                    if(year != ""){
-                        let startIndex = year.index(year.startIndex, offsetBy: 4)
-                        movie.year = year.substring(to: startIndex)
-                    }
-                }
-                if let poster = results[i]["poster_path"] as! String? {
-                    movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                }
-                self.movies.append(movie)
-            }
-        }
-        
-        self.tableView.reloadData()
+        self.loadDatas()
         SwiftSpinner.hide()
+    }
+    
+    func loadDatas(){
+        DispatchQueue.main.async {
+            let dictData = (try! JSONSerialization.jsonObject(with: self.getJSON(urlToRequest: self.baseURL + self.genreId.stringValue + self.suiteURL), options: .mutableContainers)) as? [String: Any]
+            let results = dictData?["results"] as! [Dictionary<String,Any>]
+            if !results.isEmpty {
+                for i in 0...results.count-1 {
+                    let movie = Movie()
+                    movie.title = results[i]["title"] as! String
+                    let id = results[i]["id"] as! NSNumber
+                    movie.imdbId = id.stringValue
+                    if let year = results[i]["release_date"] as! String? {
+                        if(year != ""){
+                            let startIndex = year.index(year.startIndex, offsetBy: 4)
+                            movie.year = year.substring(to: startIndex)
+                        }
+                    }
+                    if let poster = results[i]["poster_path"] as! String? {
+                        movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                    }
+                    self.movies.append(movie)
+                }
+            }
+            SwiftSpinner.hide()
+            self.tableView.reloadData()
+        }
     }
     
     func loadImage(img:String,index:Int){

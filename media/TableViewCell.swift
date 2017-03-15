@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +23,7 @@ class TableViewCell: UITableViewCell {
     }
     
     func display(data:Movie){
+        self.yearLabel.text = data.year
         self.label.text = data.title
         self.img.image = UIImage(data: data.poster)
     }
