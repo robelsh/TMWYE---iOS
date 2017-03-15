@@ -7,30 +7,76 @@
 //
 
 import UIKit
+import Firebase
+import SwiftSpinner
 
 private let reuseIdentifier = "Cell"
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
 class MoviesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    var ref: FIRDatabaseReference!
     fileprivate let itemsPerRow: CGFloat = 3
     var search:Bool = false
     var testImg:[UIImage] = []
-    let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation"]
-    
+    let test = ["Drama","Horror","Thriller", "Romance","Aventure","Comedy", "Fantasy","Sci-fi","Family","Animation","Action","Crime","Documentary","History","Western","Music","War","Mystery"]
+    var genres:[String] = []
+    var genresImg:[UIImage] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        testImg.append(UIImage(named: "comedy")!)
+        SwiftSpinner.show("Loading Genres, please wait...")
+
+        self.ref = FIRDatabase.database().reference()
+        ref.child("genres").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            print("ok")
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                let childItem = child.value as! Dictionary<String,Any>
+                print(childItem)
+                if let name = childItem["name"] as? String {
+                    self.genresImg.append(UIImage(named: name)!)
+                    self.genres.append(name)
+                }
+            }
+            self.collectionView?.reloadData()
+            SwiftSpinner.hide()
+        })
+        /*
+        testImg.append(UIImage(named: "drama")!)
         testImg.append(UIImage(named: "horror")!)
         testImg.append(UIImage(named: "thriller")!)
         testImg.append(UIImage(named: "romance")!)
         testImg.append(UIImage(named: "aventure")!)
-        testImg.append(UIImage(named: "drama")!)
+        testImg.append(UIImage(named: "comedy")!)
         testImg.append(UIImage(named: "fantasy")!)
         testImg.append(UIImage(named: "scifi")!)
         testImg.append(UIImage(named: "family")!)
         testImg.append(UIImage(named: "animation")!)
-
+        testImg.append(UIImage(named: "action")!)
+        testImg.append(UIImage(named: "crime")!)
+        testImg.append(UIImage(named: "documentary")!)
+        testImg.append(UIImage(named: "history")!)
+        testImg.append(UIImage(named: "western")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)
+        testImg.append(UIImage(named: "music")!)
+        testImg.append(UIImage(named: "war")!)
+        testImg.append(UIImage(named: "mystery")!)*/
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -41,7 +87,12 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
 
         // Do any additional setup after loading the view.
     }
-
+    
+    func getJSON(urlToRequest:String) -> Data {
+        let data = try? Data(contentsOf: URL(string: urlToRequest)!)
+        return data!
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,12 +118,12 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return self.test.count
+        return self.genres.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> MoviesCollectionViewCell {
         let cell:MoviesCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviecell", for: indexPath) as! MoviesCollectionViewCell
-        cell.display(title: self.test[indexPath.row], img: self.testImg[indexPath.row])
+        cell.display(title: self.genres[indexPath.row], img: self.genresImg[indexPath.row])
         return cell
     }
     

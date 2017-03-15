@@ -476,15 +476,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y89-kh-CF8">
+                                <rect key="frame" x="164" y="487" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Blu-Z8-b1E" firstAttribute="leading" secondItem="oNx-r0-wXY" secondAttribute="leading" id="5hh-uH-ze0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y89-kh-CF8" secondAttribute="trailing" id="6J7-gb-LTw"/>
+                            <constraint firstItem="Y89-kh-CF8" firstAttribute="top" secondItem="Blu-Z8-b1E" secondAttribute="bottom" constant="87" id="Jx0-tk-aNh"/>
+                            <constraint firstItem="HxO-ba-PwD" firstAttribute="top" secondItem="Y89-kh-CF8" secondAttribute="bottom" id="PqC-j6-kgW"/>
                             <constraint firstItem="Cgv-Xo-o5e" firstAttribute="leading" secondItem="oNx-r0-wXY" secondAttribute="leading" id="aVX-cu-t3h"/>
                             <constraint firstItem="Cgv-Xo-o5e" firstAttribute="top" secondItem="nuI-iC-J0g" secondAttribute="bottom" id="fsq-HB-iZx"/>
                             <constraint firstItem="Blu-Z8-b1E" firstAttribute="top" secondItem="Cgv-Xo-o5e" secondAttribute="bottom" constant="8" id="iCB-cX-cpd"/>
                             <constraint firstAttribute="trailing" secondItem="Blu-Z8-b1E" secondAttribute="trailing" id="maO-Jo-eCH"/>
                             <constraint firstAttribute="trailing" secondItem="Cgv-Xo-o5e" secondAttribute="trailing" id="oZh-rj-hAs"/>
+                            <constraint firstItem="Y89-kh-CF8" firstAttribute="leading" secondItem="oNx-r0-wXY" secondAttribute="leadingMargin" id="wbY-o7-M16"/>
                         </constraints>
                     </view>
                     <connections>
@@ -580,7 +588,7 @@
                                         </imageView>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.93709520729999995" green="0.93709520729999995" blue="0.93709520729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.45377504842193195" green="0.47586066245126829" blue="0.62425113346580297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Q6E-Ix-Mxf" firstAttribute="leading" secondItem="apc-st-xUx" secondAttribute="leadingMargin" id="56L-FG-rjg"/>
                                     <constraint firstItem="Q6E-Ix-Mxf" firstAttribute="top" secondItem="f1W-hC-bB3" secondAttribute="bottom" id="5ep-y1-peP"/>
