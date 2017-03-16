@@ -20,6 +20,7 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     var genres:[String] = []
     var genresImgs:[UIImage] = []
     var genresIds:[NSNumber] = []
+    var name:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,20 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
         ref.child("genres").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 let childItem = child.value as! Dictionary<String,Any>
+                
                 if let name = childItem["name"] as? String {
                     self.genresImgs.append(UIImage(named: name)!)
-                    self.genres.append(name)
+                    self.name = name
                 }
+                
+                if Locale.current.languageCode! == "fr" {
+                    if let nameFR = childItem["nameFR"] as? String {
+                        self.genres.append(nameFR)
+                    }
+                } else {
+                    self.genres.append(self.name)
+                }
+                
                 if let id = childItem["id"] as? NSNumber {
                     self.genresIds.append(id)
                 }

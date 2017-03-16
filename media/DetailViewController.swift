@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
     }
     
     func loadDatas(){
-        Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0").responseJSON { response in
+        Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
             if let JSON = response.result.value as? [String: Any] {
                 self.movie.title = JSON["title"] as! String
                 if let runtime = JSON["runtime"] as! NSNumber? {

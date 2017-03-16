@@ -19,8 +19,8 @@ class ViewController: UITableViewController {
     var genreId:NSNumber = 0
     var tableViewControler = UITableViewController(style: .plain)
     let baseURL = "https://api.themoviedb.org/3/genre/"
-    let suiteURL = "/movies?api_key=72e58ed9123ba68d1f814768448360c0&language=en-US&include_adult=false&sort_by=created_at.asc"
-    
+    let suiteURL = "/movies?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!+"&include_adult=false&sort_by=created_at.asc"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView

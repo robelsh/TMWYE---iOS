@@ -92,7 +92,7 @@ extension SearchTableViewController: UISearchResultsUpdating {
             if(searchBarText != ""){
                 let film:String = (searchBarText.replacingOccurrences(of: " ", with: "+"))
                 
-                Alamofire.request(baseURL+"search/movie?api_key=72e58ed9123ba68d1f814768448360c0&query="+film).responseJSON { response in
+                Alamofire.request(baseURL+"search/movie?api_key=72e58ed9123ba68d1f814768448360c0&query="+film+"&language="+Locale.current.languageCode!).responseJSON { response in
                     if let JSON = response.result.value as? [String: Any] {
                         let results = JSON["results"] as! [Dictionary<String,Any>]
                         if !results.isEmpty {
