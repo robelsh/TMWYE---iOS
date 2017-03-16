@@ -26,6 +26,7 @@ class AccountSettingsViewController: UIViewController {
         phoneTextField.text = user.phone
         nameTextField.text = user.name
         nickNameTextField.text = user.displayName
+        birthDatePicker.date = user.birthday
     }
 
     @IBAction func cancelSettings(_ sender: Any) {
@@ -35,6 +36,10 @@ class AccountSettingsViewController: UIViewController {
     @IBAction func submitSettings(_ sender: Any) {
         self.ref = FIRDatabase.database().reference()
         let key = self.user.uid
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-mm-yy"
+        let date = dateFormatter.string(from: self.birthDatePicker.date)
+        
         let update = ["users/\(key)":
             ["surname":self.surnameTextField.text!,
             "name":self.nameTextField.text!,
@@ -42,7 +47,8 @@ class AccountSettingsViewController: UIViewController {
             "phone":self.phoneTextField.text!,
             "email":self.user.email,
             "uid":self.user.uid,
-            "photoURL":self.user.photoURL
+            "photoURL":self.user.photoURL,
+            "birthday": date
             ]
         ]
         ref.updateChildValues(update)

@@ -70,6 +70,12 @@ class AccountViewController: UIViewController {
         if let uid = snapshot["uid"] {
             user.uid = uid
         }
+        if let birthday = snapshot["birthday"] {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-mm-yy"
+            let date = dateFormatter.date(from: birthday)
+            user.birthday = date!
+        }
         self.updateUserView()
     }
     

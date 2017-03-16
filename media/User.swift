@@ -18,4 +18,5 @@ class User {
     var surname:String = ""
     var phone:String = ""
     var photoURL:String = ""
+    var birthday:Date = Date()
 }
