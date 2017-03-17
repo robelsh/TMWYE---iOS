@@ -100,5 +100,4 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
             list.genreId = genresIds[(indexPaths?.row)!]
         }
     }
-
 }

@@ -39,9 +39,12 @@ class DetailViewController: UIViewController {
                 if let runtime = JSON["runtime"] as! NSNumber? {
                     self.movie.runtime = runtime.stringValue
                 }
-                if let poster = JSON["poster_path"] as! String? {
-                    self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                if JSON["poster_path"] == nil {
+                    if let poster = JSON["poster_path"] as! String? {
+                        self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
+                    }
                 }
+                
                 self.movie.plot = JSON["overview"] as! String
                 self.movie.released = JSON["release_date"] as! String
                 if let rating = JSON["vote_average"] as! NSNumber? {
@@ -49,9 +52,11 @@ class DetailViewController: UIViewController {
                 }
                 
                 if let genre = JSON["genres"] as? [[String:Any]] {
-                    for i in 0...genre.count-1 {
-                        let genreItem = genre[i]["name"] as! String
-                        self.movie.genre = self.movie.genre + " " + genreItem
+                    if genre.count != 0 {
+                        for i in 0...genre.count-1 {
+                            let genreItem = genre[i]["name"] as! String
+                            self.movie.genre = self.movie.genre + " " + genreItem
+                        }
                     }
                 }
                 self.title = self.movie.title

@@ -27,7 +27,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
-            
             } else {
                 FIRAuth.auth()?.signIn(withEmail: self.loginTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 
@@ -85,8 +84,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             GIDSignIn.sharedInstance().signIn()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "reset" {
+            let destination = segue.destination as! ResetViewController
+            destination.email = self.loginTextField.text!
+        }
     }
 }
