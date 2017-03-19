@@ -31,7 +31,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 self.present(alertController, animated: true, completion: nil)
             } else {
                 FIRAuth.auth()?.signIn(withEmail: self.loginTextField.text!, password: self.passwordTextField.text!) { (user, error) in
-                
                     if error == nil {
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                         self.present(vc!, animated: true, completion: nil)

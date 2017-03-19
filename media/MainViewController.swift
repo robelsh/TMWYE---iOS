@@ -16,15 +16,15 @@ class MainViewController: UIViewController {
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
         } else {
-        FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
-            if (user != nil) {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                self.present(vc!, animated: false, completion: nil)
-            } else {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-                self.present(vc!, animated: false, completion: nil)
+            FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+                if (user != nil) {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                    self.present(vc!, animated: false, completion: nil)
+                } else {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+                    self.present(vc!, animated: false, completion: nil)
+                }
             }
-        }
         }
     }
     
