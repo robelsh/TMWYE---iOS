@@ -19,7 +19,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var logInGoogle: GIDSignInButton!
     
     var ref: FIRDatabaseReference!
-
+    var google = false
+    
     @IBAction func logIn(_ sender: Any) {
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
@@ -55,7 +56,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.google = false
+        
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
         }
@@ -63,6 +65,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
             if (user != nil) {
+                if self.google {
+                    self.ref = FIRDatabase.database().reference()
+                    self.ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(["uid":(FIRAuth.auth()?.currentUser?.uid)!, "email":user?.email, "providerId":user?.providerID, "displayName":user?.displayName, "photoURL":user?.photoURL?.absoluteString])
+                }
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                 self.present(vc!, animated: false, completion: nil)
             }
@@ -87,8 +93,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         if (user != nil) {
                             self.ref = FIRDatabase.database().reference()
                             self.ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(["uid":(FIRAuth.auth()?.currentUser?.uid)!, "email":user?.email, "providerId":user?.providerID, "displayName":user?.displayName, "photoURL":user?.photoURL?.absoluteString])
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                            self.present(vc!, animated: false, completion: nil)
                         }
                     }
                 }
@@ -97,6 +101,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func logInGoogle(_ sender: Any) {
+        self.google = true
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
 
