@@ -8,5 +8,8 @@ target 'media' do
   pod 'GoogleSignIn'
   pod 'SwiftSpinner'
   pod 'Alamofire'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 
 end
