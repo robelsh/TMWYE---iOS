@@ -56,9 +56,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let loginButton = LoginButton(readPermissions: [ .publicProfile ])
-        loginButton.center = view.center
-        view.addSubview(loginButton)
 
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
@@ -71,8 +68,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 self.present(vc!, animated: false, completion: nil)
             }
         }
-        //let credential = FIRFacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
-
     }
 
     
