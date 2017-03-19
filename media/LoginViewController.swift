@@ -85,6 +85,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
                     FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                         if (user != nil) {
+                            self.ref = FIRDatabase.database().reference()
+                            self.ref.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(["uid":(FIRAuth.auth()?.currentUser?.uid)!, "email":user?.email, "providerId":user?.providerID, "displayName":user?.displayName, "photoURL":user?.photoURL?.absoluteString])
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                             self.present(vc!, animated: false, completion: nil)
                         }

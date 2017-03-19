@@ -31,9 +31,10 @@ class AccountViewController: UIViewController {
         let uid = (FIRAuth.auth()?.currentUser?.uid)! as String
         
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
-            let userDict:Dictionary<String,Dictionary<String,String>> = snapshot.value as! Dictionary<String,Dictionary<String,String>>
-            let userData = userDict[uid]
-            self.loadUser(snapshot: userData!,uid: uid)
+            if let userDict = snapshot.value as? Dictionary<String,Dictionary<String,String>> {
+                let userData = userDict[uid]
+                self.loadUser(snapshot: userData!,uid: uid)
+            }
             SwiftSpinner.hide()
         })
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observe(.childChanged, with: { (snapshot) -> Void in
