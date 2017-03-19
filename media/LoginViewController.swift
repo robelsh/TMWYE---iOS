@@ -87,8 +87,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     print(error)
                 case .cancelled:
                     print("User cancelled login.")
-                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                    print("Logged in!")
+                case .success( _, _, let accessToken):
+                    let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                    FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                        if (user != nil) {
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                            self.present(vc!, animated: false, completion: nil)
+                        }
+                    }
                 }
             }
         }
