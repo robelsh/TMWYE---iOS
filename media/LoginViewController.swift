@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FacebookLogin
+import FacebookCore
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
@@ -54,7 +56,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let loginButton = LoginButton(readPermissions: [ .publicProfile ])
+        loginButton.center = view.center
         
+        view.addSubview(loginButton)
+        if let accessToken = AccessToken.current {
+            print("ok")
+        }
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
         }
