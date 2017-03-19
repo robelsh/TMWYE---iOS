@@ -25,9 +25,12 @@ class DetailViewController: UIViewController {
     var movie:Movie = Movie()
     var ref: FIRDatabaseReference!
     var imdbId:String = ""
+    var key = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ref = FIRDatabase.database().reference()
+        self.key = ref.child("medias").childByAutoId().key
         SwiftSpinner.show("Loading, please wait...")
         self.loadDatas()
     }
@@ -39,7 +42,7 @@ class DetailViewController: UIViewController {
                 if let runtime = JSON["runtime"] as! NSNumber? {
                     self.movie.runtime = runtime.stringValue
                 }
-                if JSON["poster_path"] == nil {
+                if JSON["poster_path"] != nil {
                     if let poster = JSON["poster_path"] as! String? {
                         self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
                     }
@@ -75,11 +78,13 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func addFilm(_ sender: Any) {
-        self.ref = FIRDatabase.database().reference()
         let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-        let update = ["medias/\(self.movie.imdbId)":
+        
+        
+        let update = ["medias/\(self.key)":
             ["imdbId":self.movie.imdbId,
-             "votes": ["uid": uid]
+             "uid": uid,
+             "categorie":"sushi"
             ]
         ]
         ref.updateChildValues(update)

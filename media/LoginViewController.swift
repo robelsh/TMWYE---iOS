@@ -58,11 +58,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         let loginButton = LoginButton(readPermissions: [ .publicProfile ])
         loginButton.center = view.center
-        
         view.addSubview(loginButton)
-        if let accessToken = AccessToken.current {
-            print("ok")
-        }
+
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
         }
@@ -74,13 +71,26 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 self.present(vc!, animated: false, completion: nil)
             }
         }
+        //let credential = FIRFacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
+
     }
+
     
     @IBAction func logInFacebook(_ sender: Any) {
         if Reachability.isConnectedToNetwork() != true {
             self.displayAlertNetwork()
-            
         }else {
+            let loginManager = LoginManager()
+            loginManager.logIn([ .publicProfile ], viewController: self) { loginResult in
+                switch loginResult {
+                case .failed(let error):
+                    print(error)
+                case .cancelled:
+                    print("User cancelled login.")
+                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                    print("Logged in!")
+                }
+            }
         }
     }
     
