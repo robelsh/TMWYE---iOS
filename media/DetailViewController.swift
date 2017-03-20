@@ -26,6 +26,11 @@ class DetailViewController: UIViewController {
     var ref: FIRDatabaseReference!
     var imdbId:String = ""
     var key = ""
+    var count = 0
+    var count2 = 0
+
+    @IBOutlet weak var labelCat2: UILabel!
+    @IBOutlet weak var labelCat1: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,16 @@ class DetailViewController: UIViewController {
     }
     
     func loadDatas(){
+        ref.child("medias/\(imdbId)").queryOrderedByValue().queryEqual(toValue: 1).observe(.childAdded, with: { (snapshot) -> Void in
+            self.count = self.count + 1
+            self.labelCat1.text = self.count.description
+
+        })
+        ref.child("medias/\(imdbId)").queryOrderedByValue().queryEqual(toValue: 2).observe(.childAdded, with: { (snapshot) -> Void in
+            self.count2 = self.count2 + 1
+            self.labelCat2.text = self.count2.description
+        })
+        
         Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
             if let JSON = response.result.value as? [String: Any] {
                 self.movie.title = JSON["title"] as! String
@@ -65,7 +80,6 @@ class DetailViewController: UIViewController {
                         }
                     }
                 }
-                
                 
                 self.title = self.movie.title
                 self.country.text = self.movie.country

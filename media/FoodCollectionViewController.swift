@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SwiftSpinner
 
 private let reuseIdentifier = "Cell"
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
@@ -17,16 +19,35 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
 
     var testImg:[UIImage] = []
     let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi", "Salad"]
+    var ref: FIRDatabaseReference!
+    var foods:[String] = []
+    var foodImgs:[UIImage] = []
+    var foodIds:[NSNumber] = []
+    var name:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testImg.append(UIImage(named: "sandwitch")!)
-        testImg.append(UIImage(named: "hamburger")!)
-        testImg.append(UIImage(named: "noodle")!)
-        testImg.append(UIImage(named: "pizza")!)
-        testImg.append(UIImage(named: "sushi")!)
-        testImg.append(UIImage(named: "salad")!)
-
+        SwiftSpinner.show("Loading Foods, please wait...")
+        self.ref = FIRDatabase.database().reference()
+        ref.child("food").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+            for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                let childItem = child.value as! Dictionary<String,Any>
+                
+                if let name = childItem["name"] as? String {
+                    self.foodImgs.append(UIImage(named: name)!)
+                    self.name = name
+                }
+                
+                self.foods.append(self.name)
+                
+                
+                if let id = childItem["id"] as? NSNumber {
+                    self.foodIds.append(id)
+                }
+            }
+            self.collectionView?.reloadData()
+            SwiftSpinner.hide()
+        })
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
@@ -40,12 +61,12 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.test.count
+        return self.foods.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FoodCollectionViewCell {
         let cell:FoodCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodcell", for: indexPath) as! FoodCollectionViewCell
-        cell.display(title: self.test[indexPath.row], img: self.testImg[indexPath.row])
+        cell.display(title: self.foods[indexPath.row], img: self.foodImgs[indexPath.row])
         return cell
     }
     
