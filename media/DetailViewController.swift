@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var released: UILabel!
     @IBOutlet weak var plot: UITextView!
     @IBOutlet weak var genre: UILabel!
-
+    
     var movie:Movie = Movie()
     var ref: FIRDatabaseReference!
     var imdbId:String = ""
@@ -30,7 +30,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ref = FIRDatabase.database().reference()
-        self.key = ref.child("medias").childByAutoId().key
         SwiftSpinner.show("Loading, please wait...")
         self.loadDatas()
     }
@@ -46,6 +45,10 @@ class DetailViewController: UIViewController {
                     if let poster = JSON["poster_path"] as! String? {
                         self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
                     }
+                }
+                
+                if let imdbId = JSON["id"] as! NSNumber? {
+                    self.movie.imdbId = imdbId.stringValue
                 }
                 
                 self.movie.plot = JSON["overview"] as! String
@@ -84,15 +87,19 @@ class DetailViewController: UIViewController {
     @IBAction func addFilm(_ sender: Any) {
         let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
         
-        
-        let update = ["medias/\(self.key)":
-            ["imdbId":self.movie.imdbId,
-             "uid": uid,
-             "categorie":"sushi"
-            ]
-        ]
-        ref.updateChildValues(update)
+        let childUpdates = ["imdbID": self.movie.imdbId, uid: 1] as [String : Any]
+ 
+        ref.child("medias/\(self.movie.imdbId)").updateChildValues(childUpdates)
     }
+    
+    @IBAction func addF(_ sender: Any) {
+        let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
+        
+        let childUpdates = ["imdbID": self.movie.imdbId, uid: 2] as [String : Any]
+        
+        ref.child("medias/\(self.movie.imdbId)").updateChildValues(childUpdates)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
