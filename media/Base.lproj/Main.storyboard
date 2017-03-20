@@ -262,7 +262,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hamburger" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-A6-Ung">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hamburger" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-A6-Ung">
                                 <rect key="frame" x="127" y="273" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HdB-A6-Ung" secondAttribute="height" multiplier="0.5:0.5" id="PtS-v3-6LC"/>
@@ -999,50 +999,59 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Stl-2O-fh9">
-                                <rect key="frame" x="190" y="40" width="149" height="30"/>
+                                <rect key="frame" x="182.5" y="40" width="156.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ymw-iM-AnZ" id="Mer-Kq-6gu"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5AH-mp-Kmn">
-                                <rect key="frame" x="190" y="90" width="149" height="30"/>
+                                <rect key="frame" x="182.5" y="90" width="156.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ymw-iM-AnZ" id="3yZ-zF-OS0"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FP0-fr-L1z">
-                                <rect key="frame" x="190" y="190" width="149" height="30"/>
+                                <rect key="frame" x="182.5" y="190" width="156.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ymw-iM-AnZ" id="plc-ne-Kmf"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pG3-w0-rZP">
-                                <rect key="frame" x="36" y="45" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="36" y="46.5" width="66.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd8-Y5-snI">
-                                <rect key="frame" x="36" y="145" width="114" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="36" y="146.5" width="106.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUT-Lc-feb">
-                                <rect key="frame" x="36" y="195" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="36" y="196.5" width="41" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ra-fa-NbM">
-                                <rect key="frame" x="36" y="95" width="104" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="36" y="96.5" width="96.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNV-dq-COV">
-                                <rect key="frame" x="36" y="236" width="303" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="36" y="233.5" width="303" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1057,13 +1066,16 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f6h-2b-kLJ">
-                                <rect key="frame" x="190" y="140" width="149" height="30"/>
+                                <rect key="frame" x="182.5" y="140" width="156.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ymw-iM-AnZ" id="5fr-kh-RQC"/>
+                                </connections>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="UcD-gz-Woa">
-                                <rect key="frame" x="36" y="267" width="303" height="100"/>
+                                <rect key="frame" x="36" y="260.5" width="303" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Cwj-OS-V0H"/>
                                 </constraints>
@@ -1082,7 +1094,7 @@
                             <constraint firstItem="f6h-2b-kLJ" firstAttribute="width" secondItem="FP0-fr-L1z" secondAttribute="width" id="51Y-pY-RBr"/>
                             <constraint firstItem="gYS-Cm-gIb" firstAttribute="leading" secondItem="TLA-u6-5p9" secondAttribute="trailing" constant="100" id="96w-SP-fhM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gYS-Cm-gIb" secondAttribute="trailing" constant="20" id="BkD-ne-T8v"/>
-                            <constraint firstItem="Stl-2O-fh9" firstAttribute="leading" secondItem="pG3-w0-rZP" secondAttribute="trailing" constant="75" id="D3s-Yv-i8p"/>
+                            <constraint firstItem="Stl-2O-fh9" firstAttribute="leading" secondItem="pG3-w0-rZP" secondAttribute="trailing" constant="80" id="D3s-Yv-i8p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vNV-dq-COV" secondAttribute="trailing" constant="20" id="G5w-rc-EUg"/>
                             <constraint firstItem="TLA-u6-5p9" firstAttribute="width" secondItem="gYS-Cm-gIb" secondAttribute="width" id="G6H-de-nnq"/>
                             <constraint firstItem="MUT-Lc-feb" firstAttribute="centerY" secondItem="FP0-fr-L1z" secondAttribute="centerY" id="Htz-YG-E2M"/>
@@ -1200,12 +1212,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Hamburger" width="25" height="25"/>
         <image name="account" width="25" height="25"/>
         <image name="arrow" width="25" height="25"/>
         <image name="facebook" width="32" height="32"/>
         <image name="food" width="25" height="25"/>
         <image name="google" width="24" height="24"/>
-        <image name="hamburger" width="25" height="25"/>
         <image name="movie" width="25" height="25"/>
         <image name="top" width="25" height="25"/>
         <image name="user settings" width="25" height="25"/>

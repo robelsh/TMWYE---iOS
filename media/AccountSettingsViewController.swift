@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AccountSettingsViewController: UIViewController {
+class AccountSettingsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -53,6 +53,18 @@ class AccountSettingsViewController: UIViewController {
         ]
         ref.updateChildValues(update)
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        surnameTextField.resignFirstResponder()
+        phoneTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        nickNameTextField.resignFirstResponder()
+        return true;
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print(phoneTextField.text)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
