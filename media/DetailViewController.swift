@@ -26,11 +26,10 @@ class DetailViewController: UIViewController {
     var ref: FIRDatabaseReference!
     var imdbId:String = ""
     var key = ""
-    var count = 0
-    var count2 = 0
-
-    @IBOutlet weak var labelCat2: UILabel!
-    @IBOutlet weak var labelCat1: UILabel!
+    var categories:[String] = []
+    var categoriesId:[NSNumber] = []
+    
+    @IBOutlet weak var container: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +39,6 @@ class DetailViewController: UIViewController {
     }
     
     func loadDatas(){
-        ref.child("medias/\(imdbId)").queryOrderedByValue().queryEqual(toValue: 1).observe(.childAdded, with: { (snapshot) -> Void in
-            self.count = self.count + 1
-            self.labelCat1.text = self.count.description
-
-        })
-        ref.child("medias/\(imdbId)").queryOrderedByValue().queryEqual(toValue: 2).observe(.childAdded, with: { (snapshot) -> Void in
-            self.count2 = self.count2 + 1
-            self.labelCat2.text = self.count2.description
-        })
-        
         Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
             if let JSON = response.result.value as? [String: Any] {
                 self.movie.title = JSON["title"] as! String
@@ -98,24 +87,15 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func addFilm(_ sender: Any) {
-        let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-        
-        let childUpdates = ["imdbID": self.movie.imdbId, uid: 1] as [String : Any]
- 
-        ref.child("medias/\(self.movie.imdbId)").updateChildValues(childUpdates)
-    }
-    
-    @IBAction func addF(_ sender: Any) {
-        let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-        
-        let childUpdates = ["imdbID": self.movie.imdbId, uid: 2] as [String : Any]
-        
-        ref.child("medias/\(self.movie.imdbId)").updateChildValues(childUpdates)
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "embeddedSegue") {
+            let childViewController = segue.destination as! VotesCollectionViewController
+            childViewController.imdbId = self.imdbId
+        }
     }
 }
