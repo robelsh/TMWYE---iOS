@@ -58,13 +58,17 @@ class DetailViewController: UIViewController {
                     if genre.count != 0 {
                         for i in 0...genre.count-1 {
                             let genreItem = genre[i]["name"] as! String
-                            self.movie.genre = self.movie.genre + " " + genreItem
+                            self.movie.genre.append(genreItem)
                         }
                     }
                 }
+                
+                
                 self.title = self.movie.title
                 self.country.text = self.movie.country
-                self.genre.text = self.movie.genre
+                for genre in self.movie.genre {
+                    self.genre.text = self.genre.text! + genre
+                }
                 self.plot.text = self.movie.plot
                 self.rating.text = self.movie.rating
                 self.released.text = self.movie.released

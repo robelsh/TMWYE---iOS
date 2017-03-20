@@ -16,7 +16,7 @@ class Movie {
     var plot:String = ""
     var runtime:String = ""
     var released:String = ""
-    var genre:String = ""
+    var genre:[String] = []
     var country:String = ""
     var imdbId:String = ""
     var id:String = ""
