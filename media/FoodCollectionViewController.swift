@@ -17,8 +17,6 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
 
     fileprivate let itemsPerRow: CGFloat = 3
 
-    var testImg:[UIImage] = []
-    let test = ["Sandwitch","Hamburger","Noodle", "Pizza", "Sushi", "Salad"]
     var ref: FIRDatabaseReference!
     var foods:[String] = []
     var foodImgs:[UIImage] = []
