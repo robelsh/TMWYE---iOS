@@ -42,8 +42,16 @@ class VotesCollectionViewController: UICollectionViewController {
                 
                 let mRef = self.ref.child("medias/\(self.imdbId)").queryOrderedByValue().queryEqual(toValue: catID)
                 mRef.observe(.childAdded, with: { (snapshot) -> Void in
+                    let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
                     count = count + 1
-                    oldCat = snapshot.value as! NSNumber
+                    if uid == snapshot.key {
+                        self.active[self.categoriesId.index(of: snapshot.value as! NSNumber)!] = true
+                        if oldCat != 0 {
+                            self.active[self.categoriesId.index(of: oldCat)!] = false
+                        }
+                        oldCat = snapshot.value as! NSNumber
+                        self.active[self.categoriesId.index(of: oldCat)!] = true
+                    }
                     self.collectionView?.reloadData()
                 })
                 
