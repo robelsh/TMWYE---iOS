@@ -63,9 +63,7 @@ class AccountSettingsViewController: UIViewController, UITextFieldDelegate {
         nickNameTextField.resignFirstResponder()
         return true;
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(phoneTextField.text)
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

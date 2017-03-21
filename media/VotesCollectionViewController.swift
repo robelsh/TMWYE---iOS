@@ -34,6 +34,7 @@ class VotesCollectionViewController: UICollectionViewController {
                 }
                 self.active.append(false)
             }
+            
             for catID in self.categoriesId {
                 var count = 0
                 var oldCat = NSNumber()
@@ -43,22 +44,27 @@ class VotesCollectionViewController: UICollectionViewController {
                 mRef.observe(.childAdded, with: { (snapshot) -> Void in
                     count = count + 1
                     oldCat = snapshot.value as! NSNumber
-                    self.active[self.categoriesId.index(of: oldCat)!] = true
                     self.collectionView?.reloadData()
                 })
                 
                 self.ref.child("medias/\(self.imdbId)").observe(.childChanged, with: { (snapshot) -> Void in
+                    let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
                     if oldCat == catID {
                         count = count - 1
-                        if oldCat != 0 {
-                            self.active[self.categoriesId.index(of: oldCat)!] = false
+
+                        if uid == snapshot.key {
+                            self.active[self.categoriesId.index(of: snapshot.value as! NSNumber)!] = true
+                            if oldCat != 0 {
+                                self.active[self.categoriesId.index(of: oldCat)!] = false
+                            }
+                            oldCat = snapshot.value as! NSNumber
+                            self.active[self.categoriesId.index(of: oldCat)!] = true
                         }
-                        oldCat = snapshot.value as! NSNumber
-                        self.active[self.categoriesId.index(of: oldCat)!] = true
                         self.collectionView?.reloadData()
                     }
                 })
             }
+
             self.collectionView?.reloadData()
         })
 
