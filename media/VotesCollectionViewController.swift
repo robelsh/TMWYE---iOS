@@ -16,6 +16,8 @@ class VotesCollectionViewController: UICollectionViewController {
     var categoriesId:[NSNumber] = []
     var ref: FIRDatabaseReference!
     var imdbId = ""
+    var previousSelection = IndexPath()
+    var active:[Bool] = [false]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class VotesCollectionViewController: UICollectionViewController {
                 if let id = childItem["id"] as? NSNumber {
                     self.categoriesId.append(id)
                 }
+                self.active.append(false)
             }
             for catID in self.categoriesId {
                 var count = 0
@@ -40,15 +43,20 @@ class VotesCollectionViewController: UICollectionViewController {
                 mRef.observe(.childAdded, with: { (snapshot) -> Void in
                     count = count + 1
                     oldCat = snapshot.value as! NSNumber
+                    self.active[self.categoriesId.index(of: oldCat)!] = true
                     self.collectionView?.reloadData()
                 })
                 
                 self.ref.child("medias/\(self.imdbId)").observe(.childChanged, with: { (snapshot) -> Void in
                     if oldCat == catID {
                         count = count - 1
+                        if oldCat != 0 {
+                            self.active[self.categoriesId.index(of: oldCat)!] = false
+                        }
                         oldCat = snapshot.value as! NSNumber
+                        self.active[self.categoriesId.index(of: oldCat)!] = true
+                        self.collectionView?.reloadData()
                     }
-                    self.collectionView?.reloadData()
                 })
             }
             self.collectionView?.reloadData()
@@ -71,16 +79,13 @@ class VotesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> VoteCollectionViewCell {
         let cell:VoteCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "voteCell", for: indexPath) as! VoteCollectionViewCell
-        cell.display(name: self.categories[indexPath.row], img: UIImage(named: self.categories[indexPath.row])!)
+        cell.display(name: self.categories[indexPath.row], img: UIImage(named: self.categories[indexPath.row])!, active: self.active[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-        
         let childUpdates = ["imdbID": self.imdbId, uid: self.categoriesId[indexPath.row]] as [String : Any]
-        
         ref.child("medias/\(self.imdbId)").updateChildValues(childUpdates)
     }
 }
