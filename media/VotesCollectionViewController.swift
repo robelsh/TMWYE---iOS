@@ -19,9 +19,12 @@ class VotesCollectionViewController: UICollectionViewController {
     var previousSelection = IndexPath()
     var active:[Bool] = [false]
     var counters:[NSNumber] = []
+    var uid:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.uid = (FIRAuth.auth()?.currentUser?.uid)! as String
+
         self.ref = FIRDatabase.database().reference()
         ref.child("food").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -38,6 +41,15 @@ class VotesCollectionViewController: UICollectionViewController {
             }
             
             for catId in self.categoriesId {
+                self.ref.child("medias/\(self.imdbId)/\(catId)/votes").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
+                    for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                        if child.key == self.uid {
+                            self.active[self.categoriesId.index(of: catId)!] = true
+                        }
+                    }
+                    self.collectionView?.reloadData()
+                })
+                
                 self.ref.child("medias/\(self.imdbId)/\(catId)").queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) -> Void in
                     let count = snapshot.value as? NSNumber
                     if count != nil {
@@ -78,15 +90,14 @@ class VotesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
         let catId = self.categoriesId[indexPath.row]
         
         if !self.active[self.categoriesId.index(of: catId)!] {
             self.active[self.categoriesId.index(of: catId)!] = true
-            let childUpdates = [uid: true]
+            let childUpdates = [self.uid: true]
             ref.child("medias/\(self.imdbId)/\(catId)/votes").updateChildValues(childUpdates)
         } else {
-            ref.child("medias/\(self.imdbId)/\(catId)/votes/\(uid)").removeValue()
+            ref.child("medias/\(self.imdbId)/\(catId)/votes/\(self.uid)").removeValue()
             self.active[self.categoriesId.index(of: catId)!] = false
         }
 
