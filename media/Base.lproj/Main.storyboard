@@ -535,7 +535,7 @@
             <objects>
                 <navigationController id="upa-30-t8d" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Food" image="food" id="0Wt-a4-mTT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="NWd-YQ-t4s">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="NWd-YQ-t4s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -557,7 +557,7 @@
                 <navigationController useStoryboardIdentifierAsRestorationIdentifier="YES" id="qfY-OU-JjC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Movies" image="movie" id="SXb-YU-VW2"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ZwO-wS-6Qq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ZwO-wS-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -578,7 +578,7 @@
         <scene sceneID="BY3-ZI-jVt">
             <objects>
                 <collectionViewController title="Genre" id="ZyM-mB-8VA" customClass="MoviesCollectionViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="q5B-ob-gWu">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="q5B-ob-gWu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -682,13 +682,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al3-DI-avF">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al3-DI-avF">
                                             <rect key="frame" x="8" y="8" width="359" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-4v-psz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" ambiguous="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-4v-psz">
                                             <rect key="frame" x="8" y="29.5" width="359" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -731,7 +731,7 @@
         <scene sceneID="p7P-O5-1Cu">
             <objects>
                 <collectionViewController id="UNt-ck-GEr" customClass="FoodCollectionViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="M9n-zZ-GBx">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="M9n-zZ-GBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -965,7 +965,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-u6-5p9">
-                                <rect key="frame" x="36" y="617" width="101.5" height="30"/>
+                                <rect key="frame" x="36" y="617" width="102" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.20988883260171853" alpha="0.85563380281690138" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.85563380281690138" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1032,7 +1032,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYS-Cm-gIb">
-                                <rect key="frame" x="237.5" y="617" width="101.5" height="30"/>
+                                <rect key="frame" x="238" y="617" width="101" height="30"/>
                                 <color key="backgroundColor" red="0.51020408163265307" green="1" blue="0.020408163265306145" alpha="0.77200704225352113" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1190,7 +1190,7 @@
         <scene sceneID="fYi-tI-PGx">
             <objects>
                 <collectionViewController storyboardIdentifier="Vote" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oor-7Y-NeP" customClass="VotesCollectionViewController" customModule="media" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="zci-9t-W7u">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zci-9t-W7u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1198,7 +1198,7 @@
                             <size key="itemSize" width="80" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="voteCell" id="lyd-OJ-7oy" customClass="VoteCollectionViewCell" customModule="media" customModuleProvider="target">
@@ -1211,8 +1211,14 @@
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l95-uN-cTe">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="81"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44n-i6-681">
+                                            <rect key="frame" x="42" y="81" width="38" height="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLQ-vs-Tgf">
-                                            <rect key="frame" x="8" y="81" width="64" height="11"/>
+                                            <rect key="frame" x="8" y="81" width="24" height="11"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1222,12 +1228,14 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="l95-uN-cTe" firstAttribute="leading" secondItem="lyd-OJ-7oy" secondAttribute="leading" id="3VS-aF-D7N"/>
+                                    <constraint firstItem="44n-i6-681" firstAttribute="leading" secondItem="sLQ-vs-Tgf" secondAttribute="trailing" constant="10" id="DLf-QB-Rj3"/>
                                     <constraint firstItem="sLQ-vs-Tgf" firstAttribute="top" secondItem="l95-uN-cTe" secondAttribute="bottom" id="Gia-n7-Ywu"/>
                                     <constraint firstItem="l95-uN-cTe" firstAttribute="top" secondItem="lyd-OJ-7oy" secondAttribute="top" id="Hmc-Zx-W7X"/>
                                     <constraint firstItem="sLQ-vs-Tgf" firstAttribute="top" secondItem="l95-uN-cTe" secondAttribute="bottom" id="PIy-W8-kYd"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="sLQ-vs-Tgf" secondAttribute="trailing" id="XMF-6k-XKG"/>
                                     <constraint firstAttribute="trailing" secondItem="l95-uN-cTe" secondAttribute="trailing" id="bsL-sT-mgC"/>
                                     <constraint firstItem="sLQ-vs-Tgf" firstAttribute="leading" secondItem="lyd-OJ-7oy" secondAttribute="leadingMargin" id="cFz-fn-58U"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="44n-i6-681" secondAttribute="bottom" id="gLy-1D-CUW"/>
+                                    <constraint firstAttribute="trailing" secondItem="44n-i6-681" secondAttribute="trailing" id="m71-ww-G7A"/>
                                     <constraint firstItem="sLQ-vs-Tgf" firstAttribute="bottom" secondItem="lyd-OJ-7oy" secondAttribute="bottomMargin" id="nXW-NJ-7HF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1236,6 +1244,7 @@
                                 <connections>
                                     <outlet property="catImage" destination="l95-uN-cTe" id="TOD-1t-FjG"/>
                                     <outlet property="catNameLabel" destination="sLQ-vs-Tgf" id="spv-Od-FAi"/>
+                                    <outlet property="counterLabel" destination="44n-i6-681" id="0i9-eL-png"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

@@ -18,6 +18,7 @@ class VotesCollectionViewController: UICollectionViewController {
     var imdbId = ""
     var previousSelection = IndexPath()
     var active:[Bool] = [false]
+    var counters:[Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,46 +34,9 @@ class VotesCollectionViewController: UICollectionViewController {
                     self.categoriesId.append(id)
                 }
                 self.active.append(false)
+                self.counters.append(0)
             }
             
-            for catID in self.categoriesId {
-                var count = 0
-                var oldCat = NSNumber()
-                oldCat = 0
-                
-                let mRef = self.ref.child("medias/\(self.imdbId)").queryOrderedByValue().queryEqual(toValue: catID)
-                mRef.observe(.childAdded, with: { (snapshot) -> Void in
-                    let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-                    count = count + 1
-                    if uid == snapshot.key {
-                        self.active[self.categoriesId.index(of: snapshot.value as! NSNumber)!] = true
-                        if oldCat != 0 {
-                            self.active[self.categoriesId.index(of: oldCat)!] = false
-                        }
-                        oldCat = snapshot.value as! NSNumber
-                        self.active[self.categoriesId.index(of: oldCat)!] = true
-                    }
-                    self.collectionView?.reloadData()
-                })
-                
-                self.ref.child("medias/\(self.imdbId)").observe(.childChanged, with: { (snapshot) -> Void in
-                    let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-                    if oldCat == catID {
-                        count = count - 1
-
-                        if uid == snapshot.key {
-                            self.active[self.categoriesId.index(of: snapshot.value as! NSNumber)!] = true
-                            if oldCat != 0 {
-                                self.active[self.categoriesId.index(of: oldCat)!] = false
-                            }
-                            oldCat = snapshot.value as! NSNumber
-                            self.active[self.categoriesId.index(of: oldCat)!] = true
-                        }
-                        self.collectionView?.reloadData()
-                    }
-                })
-            }
-
             self.collectionView?.reloadData()
         })
 
@@ -93,13 +57,23 @@ class VotesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> VoteCollectionViewCell {
         let cell:VoteCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "voteCell", for: indexPath) as! VoteCollectionViewCell
-        cell.display(name: self.categories[indexPath.row], img: UIImage(named: self.categories[indexPath.row])!, active: self.active[indexPath.row])
+        cell.display(name: self.categories[indexPath.row], img: UIImage(named: self.categories[indexPath.row])!, active: self.active[indexPath.row], count: self.counters[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let uid:String = (FIRAuth.auth()?.currentUser?.uid)! as String
-        let childUpdates = ["imdbID": self.imdbId, uid: self.categoriesId[indexPath.row]] as [String : Any]
-        ref.child("medias/\(self.imdbId)").updateChildValues(childUpdates)
+        let catId = self.categoriesId[indexPath.row]
+        
+        if !self.active[self.categoriesId.index(of: catId)!] {
+            self.active[self.categoriesId.index(of: catId)!] = true
+            let childUpdates = [uid: true]
+            ref.child("medias/\(self.imdbId)/\(catId)/votes").updateChildValues(childUpdates)
+        } else {
+            ref.child("medias/\(self.imdbId)/\(catId)/votes/\(uid)").removeValue()
+            self.active[self.categoriesId.index(of: catId)!] = false
+        }
+
+        self.collectionView?.reloadData()
     }
 }

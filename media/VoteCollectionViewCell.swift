@@ -13,10 +13,12 @@ class VoteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var catImage: UIImageView!
     @IBOutlet weak var catNameLabel: UILabel!
     var active: Bool = false
+    @IBOutlet weak var counterLabel: UILabel!
     
-    func display(name: String, img: UIImage, active: Bool){
+    func display(name: String, img: UIImage, active: Bool, count: Int){
         catImage.image = img
         catNameLabel.text = name
+        counterLabel.text = count.description
         if active {
             self.backgroundColor = UIColor.white
         } else {
