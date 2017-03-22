@@ -79,6 +79,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
   - SwiftSpinner (1.1.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -90,6 +91,7 @@ DEPENDENCIES:
   - Firebase/Database
   - GoogleSignIn
   - SwiftSpinner
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
@@ -114,7 +116,8 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: c531d9d8fa791f1944a69671e4246e1f4c9d3215
+PODFILE CHECKSUM: ea070ccd312ea7c35e17aa8f424cd05a6c4b1bd7
 
 COCOAPODS: 1.1.1

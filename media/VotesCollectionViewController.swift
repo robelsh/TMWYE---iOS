@@ -18,7 +18,7 @@ class VotesCollectionViewController: UICollectionViewController {
     var imdbId = ""
     var previousSelection = IndexPath()
     var active:[Bool] = [false]
-    var counters:[Int] = []
+    var counters:[NSNumber] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,22 @@ class VotesCollectionViewController: UICollectionViewController {
                 }
                 self.active.append(false)
                 self.counters.append(0)
+            }
+            
+            for catId in self.categoriesId {
+                self.ref.child("medias/\(self.imdbId)/\(catId)").queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) -> Void in
+                    let count = snapshot.value as? NSNumber
+                    if count != nil {
+                        self.counters[self.categoriesId.index(of: catId)!] = count!
+                        self.collectionView?.reloadData()
+                    }
+                })
+                
+                self.ref.child("medias/\(self.imdbId)/\(catId)").queryLimited(toLast: 1).observe(.childChanged, with: { (snapshot) -> Void in
+                    let count = snapshot.value as? NSNumber
+                    self.counters[self.categoriesId.index(of: catId)!] = count!
+                    self.collectionView?.reloadData()
+                })
             }
             
             self.collectionView?.reloadData()
