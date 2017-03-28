@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import Firebase
 import SwiftSpinner
 import Alamofire
 
 class ViewController: UITableViewController {
-    var ref: FIRDatabaseReference!
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
     var titleView:String = ""
