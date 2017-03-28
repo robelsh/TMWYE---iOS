@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import Alamofire
 import SwiftSpinner
 
@@ -23,7 +22,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genre: UILabel!
     
     var movie:Movie = Movie()
-    var ref: FIRDatabaseReference!
     var imdbId:String = ""
     var key = ""
     var categories:[String] = []
@@ -33,7 +31,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
         SwiftSpinner.show("Loading, please wait...")
         self.loadDatas()
     }
