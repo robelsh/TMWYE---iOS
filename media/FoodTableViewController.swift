@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FoodTableViewController.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 06/02/2017.
@@ -9,12 +9,14 @@
 import UIKit
 import SwiftSpinner
 import Alamofire
+import Firebase
 
-class ViewController: UITableViewController {
+class FoodTableViewController: UITableViewController {
+    var ref: FIRDatabaseReference!
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
     var titleView:String = ""
-    var genreId:NSNumber = 0
+    var catId:NSNumber = 0
     var tableViewControler = UITableViewController(style: .plain)
     let baseURL = "https://api.themoviedb.org/3/genre/"
     let suiteURL = "/movies?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!+"&include_adult=false&sort_by=created_at.asc"
@@ -22,31 +24,47 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView
-        SwiftSpinner.show("Loading, please wait...")
-        Alamofire.request(self.baseURL + self.genreId.stringValue + self.suiteURL).responseJSON { response in
+        self.ref = FIRDatabase.database().reference()
+        ref.child("mediasByFood/\(self.catId.stringValue)").queryOrdered(byChild: "votes_count").queryLimited(toLast: 5).observe(.childAdded, with: { (snapshot) -> Void in
+            self.loadDatas(imdbId: snapshot.key)
+        })
+    }
+    
+    func loadDatas(imdbId: String) {
+        Alamofire.request("https://api.themoviedb.org/3/movie/"+imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
+            let movie = Movie()
             if let JSON = response.result.value as? [String: Any] {
-                let results = JSON["results"] as! [Dictionary<String,Any>]
-                if !results.isEmpty {
-                    for i in 0...results.count-1 {
-                        let movie = Movie()
-                        movie.title = results[i]["title"] as! String
-                        let id = results[i]["id"] as! NSNumber
-                        movie.imdbId = id.stringValue
-                        if let year = results[i]["release_date"] as! String? {
-                            if(year != ""){
-                                let startIndex = year.index(year.startIndex, offsetBy: 4)
-                                movie.year = year.substring(to: startIndex)
-                            }
-                        }
-                        if let poster = results[i]["poster_path"] as! String? {
-                            movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                        }
-                        self.movies.append(movie)
+                movie.title = JSON["title"] as! String
+                if let runtime = JSON["runtime"] as! NSNumber? {
+                    movie.runtime = runtime.stringValue
+                }
+                if let imdbId = JSON["id"] as! NSNumber? {
+                    movie.imdbId = imdbId.stringValue
+                }
+                if JSON["poster_path"] != nil {
+                    if let poster = JSON["poster_path"] as! String? {
+                        movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
                     }
                 }
+                
+                
+                movie.plot = JSON["overview"] as! String
+                movie.released = JSON["release_date"] as! String
+                if let rating = JSON["vote_average"] as! NSNumber? {
+                    movie.rating = rating.stringValue
+                }
+                
+                if let genre = JSON["genres"] as? [[String:Any]] {
+                    if genre.count != 0 {
+                        for i in 0...genre.count-1 {
+                            let genreItem = genre[i]["name"] as! String
+                            movie.genre.append(genreItem)
+                        }
+                    }
+                }
+                self.movies.append(movie)
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
-            SwiftSpinner.hide()
         }
     }
     
@@ -83,7 +101,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:TableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        let cell:FoodTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell") as! FoodTableViewCell
         if !self.movies.isEmpty {
             cell.display(data:movies[indexPath.row])
         }

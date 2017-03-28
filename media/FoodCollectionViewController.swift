@@ -77,4 +77,14 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showFood" {
+            let list = segue.destination as! FoodTableViewController
+            let cell = sender as! FoodCollectionViewCell
+            let indexPaths = self.collectionView?.indexPath(for: cell)
+            list.titleView = foods[(indexPaths?.row)!]
+            list.catId = foodIds[(indexPaths?.row)!]
+        }
+    }
 }
