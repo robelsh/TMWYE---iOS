@@ -25,6 +25,7 @@ class FoodTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView
+        SwiftSpinner.show("Loading, please wait...")
         self.ref = FIRDatabase.database().reference()
         ref.child("mediasByFood/\(self.catId.stringValue)").queryOrdered(byChild: "votes_count").queryLimited(toLast: 5).observe(.childAdded, with: { (snapshot) -> Void in
             self.loadDatas(imdbId: snapshot.key)
@@ -65,6 +66,7 @@ class FoodTableViewController: UITableViewController {
                 }
                 self.movies.append(movie)
                 self.tableView.reloadData()
+                SwiftSpinner.hide()
             }
         }
     }
