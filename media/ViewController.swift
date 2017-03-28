@@ -9,6 +9,7 @@
 import UIKit
 import SwiftSpinner
 import Alamofire
+import CellAnimator
 
 class ViewController: UITableViewController {
     var movies:[Movie] = []
@@ -90,6 +91,11 @@ class ViewController: UITableViewController {
         return cell
     }
 
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformWave, andDuration: 0.5)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as? UITableViewCell
         if cell != nil {

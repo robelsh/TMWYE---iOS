@@ -12,5 +12,6 @@ target 'media' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
   pod 'SwiftyJSON'
+  pod 'CellAnimator'
 
 end
