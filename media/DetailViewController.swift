@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftSpinner
+import SwiftyJSON
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var titleTextLabel: UILabel!
@@ -37,6 +38,58 @@ class DetailViewController: UIViewController {
     
     func loadDatas(){
         Alamofire.request("https://api.themoviedb.org/3/movie/"+self.imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
+            let json = JSON(response.result.value!)
+            
+            if let countries = json["production_countries"].array {
+                if countries.count != 0 {
+                    for i in 0...countries.count-1 {
+                        let country = countries[i]["name"].string
+                        self.movie.countries.append(country!)
+                    }
+                }
+            }
+            
+            if let title = json["title"].string {
+                self.movie.title = title
+            }
+            
+            if let runtime = json["runtime"].number {
+                self.movie.runtime = runtime.stringValue
+            }
+            
+            if let imdbId = json["id"].number {
+                self.movie.imdbId = imdbId.stringValue
+            }
+            
+            if let plot = json["overview"].string {
+                self.movie.plot = plot
+            }
+            
+            if let released = json["release_date"].number {
+                self.movie.released = released.stringValue
+            }
+            
+            if let rating = json["vote_average"].number {
+                self.movie.rating = rating.stringValue
+            }
+            
+            if let genre = json["genres"].array {
+                if genre.count != 0 {
+                    for i in 0...genre.count-1 {
+                        let genreItem = genre[i]["name"]
+                        self.movie.genre.append(genreItem.stringValue)
+                    }
+                }
+            }              
+            
+            if let poster = json["poster_path"].string {
+                Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
+                    self.movie.poster = response.result.value!
+                    self.image.image = UIImage(data: self.movie.poster)
+                }
+            }
+
+            /*
             if let JSON = response.result.value as? [String: Any] {
                 self.movie.title = JSON["title"] as! String
                 if let runtime = JSON["runtime"] as! NSNumber? {
@@ -71,15 +124,14 @@ class DetailViewController: UIViewController {
                 self.country.text = self.movie.country
                 for genre in self.movie.genre {
                     self.genre.text = self.genre.text! + genre
-                }
+                }*/
                 self.plot.text = self.movie.plot
                 self.rating.text = self.movie.rating
                 self.released.text = self.movie.released
                 self.year.text = self.movie.year
                 self.runtime.text = self.movie.runtime
                 self.titleTextLabel.text = self.movie.title
-                self.image.image = UIImage(data: self.movie.poster)
-            }
+            //}
             SwiftSpinner.hide()
         }
     }
