@@ -89,49 +89,13 @@ class DetailViewController: UIViewController {
                 }
             }
 
-            /*
-            if let JSON = response.result.value as? [String: Any] {
-                self.movie.title = JSON["title"] as! String
-                if let runtime = JSON["runtime"] as! NSNumber? {
-                    self.movie.runtime = runtime.stringValue
-                }
-                if JSON["poster_path"] != nil {
-                    if let poster = JSON["poster_path"] as! String? {
-                        self.movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                    }
-                }
-                
-                if let imdbId = JSON["id"] as! NSNumber? {
-                    self.movie.imdbId = imdbId.stringValue
-                }
-                
-                self.movie.plot = JSON["overview"] as! String
-                self.movie.released = JSON["release_date"] as! String
-                if let rating = JSON["vote_average"] as! NSNumber? {
-                    self.movie.rating = rating.stringValue
-                }
-                
-                if let genre = JSON["genres"] as? [[String:Any]] {
-                    if genre.count != 0 {
-                        for i in 0...genre.count-1 {
-                            let genreItem = genre[i]["name"] as! String
-                            self.movie.genre.append(genreItem)
-                        }
-                    }
-                }
-                
-                self.title = self.movie.title
-                self.country.text = self.movie.country
-                for genre in self.movie.genre {
-                    self.genre.text = self.genre.text! + genre
-                }*/
-                self.plot.text = self.movie.plot
-                self.rating.text = self.movie.rating
-                self.released.text = self.movie.released
-                self.year.text = self.movie.year
-                self.runtime.text = self.movie.runtime
-                self.titleTextLabel.text = self.movie.title
-            //}
+            self.plot.text = self.movie.plot
+            self.rating.text = self.movie.rating
+            self.released.text = self.movie.released
+            self.year.text = self.movie.year
+            self.runtime.text = self.movie.runtime
+            self.titleTextLabel.text = self.movie.title
+            
             SwiftSpinner.hide()
         }
     }
