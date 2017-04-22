@@ -47,9 +47,7 @@ class FoodTableViewController: UITableViewController {
             }
             
             if let poster = json["poster_path"].string {
-                Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
-                    movie.poster = response.result.value!
-                }
+                movie.posterURL = poster
             }
             
             if let plot = json["overview"].string {

@@ -36,9 +36,7 @@ class ViewController: UITableViewController {
                     }
                     
                     if let poster = results[i]["poster_path"].string {
-                        Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
-                            movie.poster = response.result.value!
-                        }
+                        movie.posterURL = poster
                     }
                     
                     if let released = results[i]["release_date"].number {
@@ -48,7 +46,9 @@ class ViewController: UITableViewController {
                     if let title = results[i]["title"].string {
                         movie.title = title
                     }
+
                     self.movies.append(movie)
+    
                 }
             }
     

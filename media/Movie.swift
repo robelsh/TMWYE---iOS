@@ -20,4 +20,5 @@ class Movie {
     var countries:[String] = []
     var imdbId:String = ""
     var id:String = ""
+    var posterURL:String = ""
 }

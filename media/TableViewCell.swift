@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TableViewCell: UITableViewCell {
 
@@ -25,7 +26,9 @@ class TableViewCell: UITableViewCell {
     func display(data:Movie){
         self.yearLabel.text = data.year
         self.label.text = data.title
-        self.img.image = UIImage(data: data.poster)
+        Alamofire.request("https://image.tmdb.org/t/p/w500"+data.posterURL).responseData(){ response in
+            self.img.image = UIImage(data: response.result.value!)
+        }
     }
 
 }
