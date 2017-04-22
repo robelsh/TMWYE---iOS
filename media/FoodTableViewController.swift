@@ -11,6 +11,7 @@ import SwiftSpinner
 import Alamofire
 import Firebase
 import CellAnimator
+import SwiftyJSON
 
 class FoodTableViewController: UITableViewController {
     var ref: FIRDatabaseReference!
@@ -21,7 +22,7 @@ class FoodTableViewController: UITableViewController {
     var tableViewControler = UITableViewController(style: .plain)
     let baseURL = "https://api.themoviedb.org/3/genre/"
     let suiteURL = "/movies?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!+"&include_adult=false&sort_by=created_at.asc"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleView
@@ -35,39 +36,50 @@ class FoodTableViewController: UITableViewController {
     func loadDatas(imdbId: String) {
         Alamofire.request("https://api.themoviedb.org/3/movie/"+imdbId+"?api_key=72e58ed9123ba68d1f814768448360c0&language="+Locale.current.languageCode!).responseJSON { response in
             let movie = Movie()
-            if let JSON = response.result.value as? [String: Any] {
-                movie.title = JSON["title"] as! String
-                if let runtime = JSON["runtime"] as! NSNumber? {
-                    movie.runtime = runtime.stringValue
-                }
-                if let imdbId = JSON["id"] as! NSNumber? {
-                    movie.imdbId = imdbId.stringValue
-                }
-                if JSON["poster_path"] != nil {
-                    if let poster = JSON["poster_path"] as! String? {
-                        movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                    }
-                }
-                
-                
-                movie.plot = JSON["overview"] as! String
-                movie.released = JSON["release_date"] as! String
-                if let rating = JSON["vote_average"] as! NSNumber? {
-                    movie.rating = rating.stringValue
-                }
-                
-                if let genre = JSON["genres"] as? [[String:Any]] {
-                    if genre.count != 0 {
-                        for i in 0...genre.count-1 {
-                            let genreItem = genre[i]["name"] as! String
-                            movie.genre.append(genreItem)
-                        }
-                    }
-                }
-                self.movies.append(movie)
-                self.tableView.reloadData()
-                SwiftSpinner.hide()
+            let json = JSON(response.result.value!)
+            
+            if let runtime = json["runtime"].number {
+                movie.runtime = runtime.stringValue
             }
+            
+            if let imdbId = json["id"].number {
+                movie.imdbId = imdbId.stringValue
+            }
+            
+            if let poster = json["poster_path"].string {
+                Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
+                    movie.poster = response.result.value!
+                }
+            }
+            
+            if let plot = json["overview"].string {
+                movie.plot = plot
+            }
+            
+            if let released = json["release_date"].number {
+                movie.released = released.stringValue
+            }
+            
+            if let rating = json["vote_average"].number {
+                movie.rating = rating.stringValue
+            }
+            
+            if let title = json["title"].string {
+                movie.title = title
+            }
+            
+            if let genre = json["genres"].array {
+                if genre.count != 0 {
+                    for i in 0...genre.count-1 {
+                        let genreItem = genre[i]["name"]
+                        movie.genre.append(genreItem.stringValue)
+                    }
+                }
+            }
+
+            self.movies.append(movie)
+            self.tableView.reloadData()
+            SwiftSpinner.hide()
         }
     }
     

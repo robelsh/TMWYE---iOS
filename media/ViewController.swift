@@ -10,6 +10,7 @@ import UIKit
 import SwiftSpinner
 import Alamofire
 import CellAnimator
+import SwiftyJSON
 
 class ViewController: UITableViewController {
     var movies:[Movie] = []
@@ -25,27 +26,32 @@ class ViewController: UITableViewController {
         self.title = self.titleView
         SwiftSpinner.show("Loading, please wait...")
         Alamofire.request(self.baseURL + self.genreId.stringValue + self.suiteURL).responseJSON { response in
-            if let JSON = response.result.value as? [String: Any] {
-                let results = JSON["results"] as! [Dictionary<String,Any>]
-                if !results.isEmpty {
-                    for i in 0...results.count-1 {
-                        let movie = Movie()
-                        movie.title = results[i]["title"] as! String
-                        let id = results[i]["id"] as! NSNumber
-                        movie.imdbId = id.stringValue
-                        if let year = results[i]["release_date"] as! String? {
-                            if(year != ""){
-                                let startIndex = year.index(year.startIndex, offsetBy: 4)
-                                movie.year = year.substring(to: startIndex)
-                            }
-                        }
-                        if let poster = results[i]["poster_path"] as! String? {
-                            movie.poster = try! Data(contentsOf:  URL(string: "https://image.tmdb.org/t/p/w500"+poster)!)
-                        }
-                        self.movies.append(movie)
+            let json = JSON(response.result.value!)
+            
+            if var results = json["results"].array {
+                for i in 0...results.count-1 {
+                    let movie = Movie()
+                    if let imdbId = results[i]["id"].number {
+                        movie.imdbId = imdbId.stringValue
                     }
+                    
+                    if let poster = results[i]["poster_path"].string {
+                        Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
+                            movie.poster = response.result.value!
+                        }
+                    }
+                    
+                    if let released = results[i]["release_date"].number {
+                        movie.released = released.stringValue
+                    }
+                    
+                    if let title = results[i]["title"].string {
+                        movie.title = title
+                    }
+                    self.movies.append(movie)
                 }
             }
+    
             self.tableView.reloadData()
             SwiftSpinner.hide()
         }
