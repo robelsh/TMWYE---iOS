@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftSpinner
+import SwiftyJSON
 
 private let reuseIdentifier = "Cell"
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
@@ -29,17 +30,16 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         self.ref = FIRDatabase.database().reference()
         ref.child("food").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                let childItem = child.value as! Dictionary<String,Any>
+                let childItem = JSON(child.value!)
                 
-                if let name = childItem["name"] as? String {
+                if let name = childItem["name"].string {
                     self.foodImgs.append(UIImage(named: name)!)
                     self.name = name
                 }
                 
                 self.foods.append(self.name)
                 
-                
-                if let id = childItem["id"] as? NSNumber {
+                if let id = childItem["id"].number {
                     self.foodIds.append(id)
                 }
             }

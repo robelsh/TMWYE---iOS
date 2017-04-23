@@ -24,6 +24,7 @@
 		737624D31E8AC8CA00966614 /* FoodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737624D21E8AC8CA00966614 /* FoodTableViewController.swift */; };
 		737D5D3E1E70180C009CC757 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3D1E70180C009CC757 /* SignUpViewController.swift */; };
 		737D5D401E701816009CC757 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D5D3F1E701816009CC757 /* LoginViewController.swift */; };
+		739501B51EAC9ACF00549D70 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739501B41EAC9ACF00549D70 /* Services.swift */; };
 		73A2FFEC1E706B08000F43C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2FFEB1E706B08000F43C1 /* User.swift */; };
 		73A2FFEE1E7085EF000F43C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73A2FFED1E7085EF000F43C1 /* Assets.xcassets */; };
 		73A6014C1E7C19F40046D228 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A6014B1E7C19F40046D228 /* ResetViewController.swift */; };
@@ -59,6 +60,7 @@
 		737624D21E8AC8CA00966614 /* FoodTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableViewController.swift; sourceTree = "<group>"; };
 		737D5D3D1E70180C009CC757 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		737D5D3F1E701816009CC757 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		739501B41EAC9ACF00549D70 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		73A2FFEB1E706B08000F43C1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		73A2FFED1E7085EF000F43C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73A6014B1E7C19F40046D228 /* ResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				736546451E786A6700E271E1 /* Movie */,
 				736546441E786A5100E271E1 /* Model */,
 				73067E751E70AD6400A15551 /* Reachability.swift */,
+				739501B41EAC9ACF00549D70 /* Services.swift */,
 				734056431E491BB1007A3070 /* AppDelegate.swift */,
 				733133A21E72156700E18F0B /* MainViewController.swift */,
 				734056471E491BB1007A3070 /* Main.storyboard */,
@@ -340,6 +343,7 @@
 				73067E761E70AD6400A15551 /* Reachability.swift in Sources */,
 				73A6014C1E7C19F40046D228 /* ResetViewController.swift in Sources */,
 				737624D11E8AC8C200966614 /* FoodTableViewCell.swift in Sources */,
+				739501B51EAC9ACF00549D70 /* Services.swift in Sources */,
 				73B940161E76E0B600BE737A /* MoviesCollectionViewController.swift in Sources */,
 				730B2B061E807066008F940B /* VoteCollectionViewCell.swift in Sources */,
 				73730E151E6E06AE00218B21 /* DetailViewController.swift in Sources */,

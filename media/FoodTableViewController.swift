@@ -81,11 +81,6 @@ class FoodTableViewController: UITableViewController {
         }
     }
     
-    func getJSON(urlToRequest:String) -> Data {
-        let data = try? Data(contentsOf: URL(string: urlToRequest)!)
-        return data!
-    }
-    
     func parseJSON(inputData:Data) -> Dictionary<String,String> {
         let dictData = (try! JSONSerialization.jsonObject(with: inputData, options: .mutableContainers)) as! Dictionary<String,String>
         return dictData
