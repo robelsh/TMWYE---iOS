@@ -28,7 +28,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-fs-MLn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O5b-fs-MLn">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="114"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="gAa-Uj-pcF"/>
@@ -816,7 +816,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLW-4P-EyJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="LLW-4P-EyJ">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="114.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="cbz-gZ-jch"/>
@@ -1345,7 +1345,7 @@
         <image name="user settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IZ8-Ir-w0w"/>
+        <segue reference="bPS-gq-aRP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

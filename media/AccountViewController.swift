@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftSpinner
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var uidTextField: UILabel!
     @IBOutlet weak var emailTextField: UILabel!
@@ -18,6 +18,9 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     var ref: FIRDatabaseReference!
     var user:User = User()
+    let storageRef = FIRStorage.storage().reference()
+    var uid:String = ""
+    var imageRef:FIRStorageReference = FIRStorageReference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,19 +29,22 @@ class AccountViewController: UIViewController {
         profilePic.backgroundColor = UIColor.black
         profilePic.layer.cornerRadius = 45
         profilePic.clipsToBounds = true
-        
+        profilePic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(importPicture)))
+        profilePic.isUserInteractionEnabled = true
+
         self.ref = FIRDatabase.database().reference()
-        let uid = (FIRAuth.auth()?.currentUser?.uid)! as String
-        
+        self.uid = (FIRAuth.auth()?.currentUser?.uid)! as String
+        self.imageRef = storageRef.child("images/"+self.uid+".jpg")
+
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
             if let userDict = snapshot.value as? Dictionary<String,Dictionary<String,String>> {
-                let userData = userDict[uid]
-                self.loadUser(snapshot: userData!,uid: uid)
+                let userData = userDict[self.uid]
+                self.loadUser(snapshot: userData!,uid: self.uid)
             }
             SwiftSpinner.hide()
         })
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observe(.childChanged, with: { (snapshot) -> Void in
-            self.loadUser(snapshot: snapshot.value as! Dictionary<String,String>,uid: uid)
+            self.loadUser(snapshot: snapshot.value as! Dictionary<String,String>,uid: self.uid)
         })
     }
 
@@ -100,6 +106,28 @@ class AccountViewController: UIViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        let imageData: Data = UIImagePNGRepresentation(image)!
+        dismiss(animated: true)
+        
+        _ = self.imageRef.put(imageData, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                return
+            }
+            _ = metadata.downloadURL
+        }
+        self.profilePic.image = image
+    }
+    
+    func importPicture() {
+        print("ok")
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
