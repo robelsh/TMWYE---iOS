@@ -30,6 +30,7 @@ class FoodTableViewController: UITableViewController {
         self.ref = FIRDatabase.database().reference()
         ref.child("mediasByFood/\(self.catId.stringValue)").queryOrdered(byChild: "votes_count").queryLimited(toLast: 5).observe(.childAdded, with: { (snapshot) -> Void in
             self.loadDatas(imdbId: snapshot.key)
+ //IF snapshot.key = null, loader.hide + message nothing
         })
     }
     
