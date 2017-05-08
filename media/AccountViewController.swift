@@ -50,11 +50,18 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     func loadUser(snapshot:Dictionary<String,String>,uid:String){
         if let photo = snapshot["photoURL"] {
-            if photo != ""{
-                let photoURL = URL(string: photo)!
-                user.photo = try! Data(contentsOf: photoURL)
-                user.photoURL = photo
+            self.imageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
+                if error != nil {
+                    if photo != ""{
+                        let photoURL = URL(string: photo)!
+                        self.user.photo = try! Data(contentsOf: photoURL)
+                        self.user.photoURL = photo
+                    }
+                } else {
+                    self.user.photo = data!
+                }
             }
+            
         }
         if let displayName = snapshot["displayName"] {
             user.displayName = displayName
@@ -123,7 +130,6 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func importPicture() {
-        print("ok")
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
