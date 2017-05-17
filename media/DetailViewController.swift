@@ -12,6 +12,7 @@ import SwiftSpinner
 import SwiftyJSON
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var year: UILabel!
@@ -65,8 +66,8 @@ class DetailViewController: UIViewController {
                 self.movie.plot = plot
             }
             
-            if let released = json["release_date"].number {
-                self.movie.released = released.stringValue
+            if let released = json["release_date"].string {
+                self.movie.released = released
             }
             
             if let rating = json["vote_average"].number {
@@ -88,6 +89,19 @@ class DetailViewController: UIViewController {
                     self.image.image = UIImage(data: self.movie.poster)
                 }
             }
+            
+            if let posterBck = json["backdrop_path"].string {
+                Alamofire.request("https://image.tmdb.org/t/p/w500"+posterBck).responseData(){ response in
+                    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+                    self.backgroundImage.image = UIImage(data: response.result.value!)
+                    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                    blurEffectView.frame = self.backgroundImage.bounds
+                    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    self.backgroundImage.addSubview(blurEffectView)
+                }
+            }
+            
+
 
             self.plot.text = self.movie.plot
             self.rating.text = self.movie.rating

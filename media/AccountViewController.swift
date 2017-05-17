@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftSpinner
+import SwiftyJSON
 
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
@@ -37,19 +38,26 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.imageRef = storageRef.child("images/"+self.uid+".jpg")
 
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
-            if let userDict = snapshot.value as? Dictionary<String,Dictionary<String,String>> {
-                let userData = userDict[self.uid]
-                self.loadUser(snapshot: userData!,uid: self.uid)
+            if let json = JSON(snapshot.value!).dictionary {
+                let userData = json[self.uid]!
+                self.loadUser(data: userData, uid: self.uid)
+                SwiftSpinner.hide()
             }
-            SwiftSpinner.hide()
+            
         })
         ref.child("users").queryEqual(toValue: uid).queryOrdered(byChild: "uid").observe(.childChanged, with: { (snapshot) -> Void in
-            self.loadUser(snapshot: snapshot.value as! Dictionary<String,String>,uid: self.uid)
+            let json = JSON(snapshot.value!)
+            self.loadUser(data: json,uid: self.uid)
         })
+        
     }
 
-    func loadUser(snapshot:Dictionary<String,String>,uid:String){
-        if let photo = snapshot["photoURL"] {
+    func loadUser(data:JSON,uid:String){
+        if let votes = data["votes"].dictionary {
+            print(votes)
+        }
+        
+        if let photo = data["photoURL"].string {
             self.imageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
                 if error != nil {
                     if photo != ""{
@@ -61,30 +69,29 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
                     self.user.photo = data!
                 }
             }
-            
         }
-        if let displayName = snapshot["displayName"] {
+        if let displayName = data["displayName"].string {
             user.displayName = displayName
         }
-        if let name = snapshot["name"] {
+        if let name = data["name"].string {
             user.name = name
         }
-        if let surname = snapshot["surname"] {
+        if let surname = data["surname"].string {
             user.surname = surname
         }
-        if let phone = snapshot["phone"] {
+        if let phone = data["phone"].string {
             user.phone = phone
         }
-        if let providerId = snapshot["providerId"] {
+        if let providerId = data["providerId"].string {
             user.providerID = providerId
         }
-        if let email = snapshot["email"] {
+        if let email = data["email"].string {
             user.email = email
         }
-        if let uid = snapshot["uid"] {
+        if let uid = data["uid"].string {
             user.uid = uid
         }
-        if let birthday = snapshot["birthday"] {
+        if let birthday = data["birthday"].string {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-mm-yy"
             let date = dateFormatter.date(from: birthday)

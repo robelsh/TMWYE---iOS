@@ -21,4 +21,9 @@ class Movie {
     var imdbId:String = ""
     var id:String = ""
     var posterURL:String = ""
+    
+    func extractYearFromRelease(released:String) -> String {
+        let index = released.index(released.startIndex, offsetBy: 4)
+        return released.substring(to: index)
+    }
 }

@@ -95,9 +95,11 @@ class VotesCollectionViewController: UICollectionViewController {
         if !self.active[self.categoriesId.index(of: catId)!] {
             self.active[self.categoriesId.index(of: catId)!] = true
             let childUpdates = [self.uid: true]
+            ref.child("users/\(self.uid)/votes").updateChildValues([self.imdbId: true])
             ref.child("medias/\(self.imdbId)/\(catId)/votes").updateChildValues(childUpdates)
             ref.child("mediasByFood/\(catId)/\(self.imdbId)/votes").updateChildValues(childUpdates)
         } else {
+            ref.child("users/\(self.uid)/votes/\(self.imdbId)").removeValue()
             ref.child("medias/\(self.imdbId)/\(catId)/votes/\(self.uid)").removeValue()
             ref.child("mediasByFood/\(catId)/\(self.imdbId)/votes/\(self.uid)").removeValue()
             self.active[self.categoriesId.index(of: catId)!] = false

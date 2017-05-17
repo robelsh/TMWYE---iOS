@@ -39,16 +39,15 @@ class MovieTableViewController: UITableViewController {
                         movie.posterURL = poster
                     }
                     
-                    if let released = results[i]["release_date"].number {
-                        movie.released = released.stringValue
+                    if let released = results[i]["release_date"].string {
+                        movie.year = movie.extractYearFromRelease(released: released)
                     }
                     
                     if let title = results[i]["title"].string {
                         movie.title = title
                     }
-
+                    
                     self.movies.append(movie)
-    
                 }
             }
     
