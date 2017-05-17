@@ -94,7 +94,7 @@ class MoviesCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenre" {
-            let list = segue.destination as! ViewController
+            let list = segue.destination as! MovieTableViewController
             let cell = sender as! MoviesCollectionViewCell
             let indexPaths = self.collectionView?.indexPath(for: cell)
             list.titleView = genres[(indexPaths?.row)!]

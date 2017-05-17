@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  MovieTableViewCell.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 06/02/2017.
@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class TableViewCell: UITableViewCell {
+class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var label: UILabel!

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MovieTableViewController.swift
 //  media
 //
 //  Created by Etienne Jézéquel on 06/02/2017.
@@ -12,7 +12,7 @@ import Alamofire
 import CellAnimator
 import SwiftyJSON
 
-class ViewController: UITableViewController {
+class MovieTableViewController: UITableViewController {
     var movies:[Movie] = []
     let searchController = UISearchController(searchResultsController: nil)
     var titleView:String = ""
@@ -90,7 +90,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:TableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        let cell:MovieTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "cell") as! MovieTableViewCell
         if !self.movies.isEmpty {
             cell.display(data:movies[indexPath.row])
         }
