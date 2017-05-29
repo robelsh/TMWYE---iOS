@@ -10,11 +10,11 @@ import UIKit
 
 class FoodCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
     func display(title: String, img: UIImage){
-        button.setImage(img, for: .normal)
+        image.image = img
         self.title.text = title
     }
 }

@@ -96,7 +96,6 @@ class MovieTableViewController: UITableViewController {
         return cell
     }
 
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformWave, andDuration: 0.5)
     }

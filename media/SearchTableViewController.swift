@@ -24,24 +24,14 @@ class SearchTableViewController: UITableViewController {
             searchController.searchBar.delegate = self
             definesPresentationContext = true
             searchController.searchBar.placeholder = "Looking for a movie ?"
-            searchController.searchBar.tintColor = UIColor.white
-            searchController.searchBar.barTintColor = UIColor.darkGray
+            searchController.searchBar.tintColor = UIColor.black
+            searchController.searchBar.barTintColor = UIColor.lightText
             searchController.dimsBackgroundDuringPresentation = false
             tableView.tableHeaderView = searchController.searchBar
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func getJSON(urlToRequest:String) -> Data {
-        let data = try? Data(contentsOf: URL(string: urlToRequest)!)
-        return data!
-    }
-    
-    func parseJSON(inputData:Data) -> Dictionary<String,String> {
-        let dictData = (try! JSONSerialization.jsonObject(with: inputData, options: .mutableContainers)) as! Dictionary<String,String>
-        return dictData
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool

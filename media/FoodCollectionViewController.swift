@@ -78,6 +78,17 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.gray
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.black
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFood" {
             let list = segue.destination as! FoodTableViewController

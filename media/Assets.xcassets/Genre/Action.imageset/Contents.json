@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Action_000000_25.png",
+      "filename" : "icons8-stick_fighting.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Action_000000_50.png",
+      "filename" : "icons8-stick_fighting-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Action_000000_100.png",
+      "filename" : "icons8-stick_fighting-2.png",
       "scale" : "3x"
     }
   ],
