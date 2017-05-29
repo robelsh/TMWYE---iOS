@@ -86,7 +86,7 @@ class FoodCollectionViewController: UICollectionViewController, UICollectionView
     
     override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = UIColor.black
+        cell?.backgroundColor = UIColor.lightGray
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

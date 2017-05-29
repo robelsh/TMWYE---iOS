@@ -14,7 +14,6 @@ import SwiftyJSON
 class DetailViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleTextLabel: UILabel!
-    @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var runtime: UILabel!
@@ -33,6 +32,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SwiftSpinner.show("Loading, please wait...")
         self.loadDatas()
     }
@@ -81,35 +81,21 @@ class DetailViewController: UIViewController {
                         self.movie.genre.append(genreItem.stringValue)
                     }
                 }
-            }              
-            
-            if let poster = json["poster_path"].string {
-                Alamofire.request("https://image.tmdb.org/t/p/w500"+poster).responseData(){ response in
-                    self.movie.poster = response.result.value!
-                    self.image.image = UIImage(data: self.movie.poster)
-                }
             }
             
             if let posterBck = json["backdrop_path"].string {
                 Alamofire.request("https://image.tmdb.org/t/p/w500"+posterBck).responseData(){ response in
-                    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
                     self.backgroundImage.image = UIImage(data: response.result.value!)
-                    let blurEffectView = UIVisualEffectView(effect: blurEffect)
-                    blurEffectView.frame = self.backgroundImage.bounds
-                    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    self.backgroundImage.addSubview(blurEffectView)
                 }
             }
-            
-
 
             self.plot.text = self.movie.plot
-            self.rating.text = self.movie.rating
+            self.rating.text = self.movie.rating + " 🌟"
             self.released.text = self.movie.released
             self.year.text = self.movie.year
-            self.runtime.text = self.movie.runtime
+            self.runtime.text = self.movie.runtime + " 🕐"
             self.titleTextLabel.text = self.movie.title
-            
+            self.country.text = self.movie.countries[0]
             SwiftSpinner.hide()
         }
     }

@@ -20,9 +20,9 @@ class VoteCollectionViewCell: UICollectionViewCell {
         catNameLabel.text = name
         counterLabel.text = count.stringValue
         if active {
-            self.backgroundColor = UIColor.darkGray
+            catImage.backgroundColor = UIColor.darkGray
         } else {
-            self.backgroundColor = UIColor.gray
+            catImage.backgroundColor = UIColor.gray
         }
     }
 }
