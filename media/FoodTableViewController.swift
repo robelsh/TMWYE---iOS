@@ -81,11 +81,6 @@ class FoodTableViewController: UITableViewController {
         }
     }
     
-    func parseJSON(inputData:Data) -> Dictionary<String,String> {
-        let dictData = (try! JSONSerialization.jsonObject(with: inputData, options: .mutableContainers)) as! Dictionary<String,String>
-        return dictData
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
